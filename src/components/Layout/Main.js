@@ -1,10 +1,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
-import Grid from '@material-ui/core/Grid';
 
-import Target from '../Page/Target';
-import Source from '../Page/Source';
+import Page from '../Page';
 
 const styles = theme => ({
   root: {
@@ -17,14 +15,7 @@ function CenteredGrid(props) {
 
   return (
     <div className={classes.root}>
-      <Grid container spacing={16}>
-        <Grid item xs={6}>
-          <Source />
-        </Grid>
-        <Grid item xs={6}>
-          <Target />
-        </Grid>
-      </Grid>
+      <Page />
     </div>
   );
 }

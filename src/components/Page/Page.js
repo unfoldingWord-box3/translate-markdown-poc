@@ -1,17 +1,39 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import Typography from '@material-ui/core/Typography';
-import Paper from '@material-ui/core/Paper';
+import Grid from '@material-ui/core/Grid';
+import IconButton from '@material-ui/core/IconButton';
+import { LabelImportant } from '@material-ui/icons';
+import Switch from '@material-ui/core/Switch';
 
-export const Page = (classes) =>
-  <Paper style={{padding: '1em'}} elevation={1}>
-    <Typography variant="headline" component="h3">
-      This is a sheet of paper.
-    </Typography>
-    <Typography component="p">
-      Paper can be used to build surface or other elements for your application.
-    </Typography>
-  </Paper>
+import Block from '../Block';
+
+import sourceMarkdown from './10-en.md.js';
+import targetMarkdown from './10-hi.md.js';
+
+export const Page = () => {
+  const sourceArray = sourceMarkdown.split(/\n/)
+    .filter(line => {return line !== ''});
+  const targetArray = targetMarkdown.split(/\n/)
+    .filter(line => {return line !== ''});
+  const blocks = sourceArray.map((sourceLine, index) =>
+    <Grid key={index} xs={13} container spacing={16}>
+      <Grid item xs={5}>
+        <Block markdown={sourceLine} />
+      </Grid>
+      <Grid item xs={1} alignContent="center">
+        <Switch defaultChecked value="checked" color="primary" />
+        <IconButton aria-label="Complete">
+          <LabelImportant fontSize="small" />
+        </IconButton>
+      </Grid>
+      <Grid item xs={5}>
+        <Block markdown={targetArray[index]} editable='true' />
+      </Grid>
+    </Grid>
+  )
+
+  return blocks;
+}
 
 Page.propTypes = {
 }

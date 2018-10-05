@@ -14,7 +14,7 @@ import File from './File';
 
 export const Files = ({filenames}) =>
 
-  <div>
+  <div className='files'>
     <List
       component="nav"
       subheader={
@@ -32,8 +32,8 @@ export const Files = ({filenames}) =>
       <Collapse in={true} timeout="auto" unmountOnExit>
         <List component="div" style={{paddingLeft: '1em'}}>
           {
-            filenames.map(filename =>
-              <File filename={filename} />
+            filenames.map((filename, index) =>
+              <File key={index} filename={filename} />
             )
           }
         </List>
