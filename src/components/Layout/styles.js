@@ -77,6 +77,9 @@ const Styles = theme => ({
   'contentShift-right': {
     marginRight: 0,
   },
+  'toolbar': {
+    width: '100%'
+  },
 });
 
 export default Styles;

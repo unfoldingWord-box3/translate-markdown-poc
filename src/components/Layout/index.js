@@ -13,6 +13,7 @@ import ChevronLeftIcon from '@material-ui/icons/ChevronLeft';
 import ChevronRightIcon from '@material-ui/icons/ChevronRight';
 
 import Files from '../Files';
+import TranslateMenu from '../TranslateMenu'
 import Main from './Main'
 import styles from './styles';
 
@@ -64,7 +65,7 @@ class Layout extends React.Component {
               [classes[`appBarShift-left`]]: open,
             })}
           >
-            <Toolbar disableGutters={!open}>
+            <Toolbar className={classes.toolbar} disableGutters={!open}>
               <IconButton
                 color="inherit"
                 aria-label="Open drawer"
@@ -76,6 +77,9 @@ class Layout extends React.Component {
               <Typography variant="title" color="inherit" noWrap>
                 translateMarkdown
               </Typography>
+              <div style={{position: 'absolute', right: 0}}>
+                <TranslateMenu  />
+              </div>
             </Toolbar>
           </AppBar>
           {drawer}
