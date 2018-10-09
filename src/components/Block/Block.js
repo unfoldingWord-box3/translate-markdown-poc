@@ -8,7 +8,7 @@ export const Block = ({markdown, editable}) =>
     contentEditable={editable}
     style={{
       border: '1px solid #ccc',
-      background: editable ? '#eee' : 'transparent',
+      background: !editable ? '#eee' : 'transparent',
       padding: '0 1em',
     }}
   >

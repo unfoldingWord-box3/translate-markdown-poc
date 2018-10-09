@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import Grid from '@material-ui/core/Grid';
 import IconButton from '@material-ui/core/IconButton';
-import { CheckCircle, LabelImportant } from '@material-ui/icons';
+import { CheckCircle, LabelImportant, GTranslate } from '@material-ui/icons';
 
 import Block from '../Block';
 
@@ -25,6 +25,9 @@ export const Page = () => {
         </IconButton>
         <IconButton aria-label="Copy">
           <LabelImportant fontSize="small" />
+        </IconButton>
+        <IconButton aria-label="Copy">
+          <GTranslate fontSize="small" />
         </IconButton>
       </Grid>
       <Grid item xs={5}>
