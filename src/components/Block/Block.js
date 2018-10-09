@@ -10,6 +10,7 @@ export const Block = ({markdown, editable}) =>
       border: '1px solid #ccc',
       background: !editable ? '#eee' : 'transparent',
       padding: '0 1em',
+      minHeight: '9em',
     }}
   >
     <ReactMarkdown className='markdown' source={markdown} />
