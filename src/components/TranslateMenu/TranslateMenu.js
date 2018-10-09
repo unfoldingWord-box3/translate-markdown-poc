@@ -10,12 +10,6 @@ import { withStyles } from '@material-ui/core/styles';
 import {Translate, ArrowLeft, ArrowRight} from '@material-ui/icons';
 
 const styles = theme => ({
-  sectionMobile: {
-    display: 'flex',
-    [theme.breakpoints.up('md')]: {
-      display: 'none',
-    },
-  },
 });
 
 class TranslateMenu extends React.Component {
@@ -71,7 +65,7 @@ class TranslateMenu extends React.Component {
 
     return (
       <div className={classes.root}>
-        <div className={classes.sectionMobile}>
+        <div className={classes.button}>
           <IconButton aria-haspopup="true" onClick={this.handleMenuOpen} color="inherit">
             <Translate />
           </IconButton>

@@ -4,11 +4,9 @@ import { withStyles } from '@material-ui/core/styles';
 
 import {
   List,
-  ListSubheader,
   ListItem,
   ListItemIcon,
   ListItemText,
-  Divider,
   Collapse
 } from '@material-ui/core';
 import {

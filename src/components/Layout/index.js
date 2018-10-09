@@ -53,6 +53,9 @@ class Layout extends React.Component {
           <Typography variant='subheading'>
             Files
           </Typography>
+          <IconButton onClick={this.handleDrawerClose}>
+            <ChevronLeft />
+          </IconButton>
         </div>
         <Divider />
         <Files filenames={filenames} />
@@ -80,7 +83,7 @@ class Layout extends React.Component {
               <Typography variant="title" color="inherit" noWrap>
                 translateMarkdown
               </Typography>
-              <div style={{position: 'absolute', right: 0}}>
+              <div style={{position: 'fixed', right: 0}}>
                 <TranslateMenu  />
               </div>
             </Toolbar>
