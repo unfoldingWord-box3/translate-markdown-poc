@@ -15,11 +15,11 @@ export const Page = () => {
   const targetArray = targetMarkdown.split(/\n/)
     .filter(line => {return line !== ''});
   const blocks = sourceArray.map((sourceLine, index) =>
-    <Grid key={index} xs={13} container spacing={16}>
-      <Grid item xs={5}>
+    <Grid container wrap="nowrap" key={index} alignItems="center" xs={13} spacing={16}>
+      <Grid item xs={6}>
         <Block markdown={sourceLine} />
       </Grid>
-      <Grid item xs={1} alignContent="center">
+      <Grid item xs={1} style={{ textAlign: "center", minWidth: '3em', padding: 0, }}>
         <IconButton aria-label="Complete">
           <CheckCircle fontSize="small" />
         </IconButton>
@@ -32,7 +32,7 @@ export const Page = () => {
           <GTranslate fontSize="small" />
         </IconButton>
       </Grid>
-      <Grid item xs={5}>
+      <Grid item xs={6}>
         <Block markdown={targetArray[index]} editable='true' />
       </Grid>
     </Grid>
