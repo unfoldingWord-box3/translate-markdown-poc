@@ -13,7 +13,6 @@ const Styles = theme => ({
     width: '100%',
   },
   appBar: {
-    position: 'absolute',
     transition: theme.transitions.create(['margin', 'width'], {
       easing: theme.transitions.easing.sharp,
       duration: theme.transitions.duration.leavingScreen,
@@ -40,14 +39,14 @@ const Styles = theme => ({
     display: 'none',
   },
   drawerPaper: {
-    position: 'relative',
     width: drawerWidth,
+    overflowY: 'unset',
   },
   drawerHeader: {
     display: 'flex',
     alignItems: 'center',
-    justifyContent: 'flex-end',
-    padding: '0 8px',
+    justifyContent: 'flex',
+    padding: '0 1.5em',
     ...theme.mixins.toolbar,
   },
   content: {
@@ -60,7 +59,7 @@ const Styles = theme => ({
     }),
   },
   'content-left': {
-    marginLeft: -drawerWidth,
+    // marginLeft: -drawerWidth,
   },
   'content-right': {
     marginRight: -drawerWidth,

@@ -1,48 +1,64 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import List from '@material-ui/core/List';
-import ListSubheader from '@material-ui/core/ListSubheader';
-import ListItem from '@material-ui/core/ListItem';
-import ListItemIcon from '@material-ui/core/ListItemIcon';
-import ListItemText from '@material-ui/core/ListItemText';
-import ExpandLess from '@material-ui/icons/ExpandLess';
-import Divider from '@material-ui/core/Divider';
-import FolderIcon from '@material-ui/icons/Folder';
-import Collapse from '@material-ui/core/Collapse';
+import { withStyles } from '@material-ui/core/styles';
+
+import {
+  List,
+  ListSubheader,
+  ListItem,
+  ListItemIcon,
+  ListItemText,
+  Divider,
+  Collapse
+} from '@material-ui/core';
+import {
+  ExpandLess,
+  Folder
+} from '@material-ui/icons';
 
 import File from './File';
 
-export const Files = ({filenames}) =>
+const styles = theme => ({
+  files: {
+    height: '100%',
+  },
+  fileList: {
+    height: '100%',
+    overflowY: 'auto',
+  }
+});
 
-  <div className='files'>
+export const Files = ({filenames, classes}) =>
+
+  <div className={classes.files}>
     <List
+      className={classes.files}
       component="nav"
-      subheader={
-        <ListSubheader>Files</ListSubheader>
-      }
     >
-      <Divider />
-      <ListItem>
-        <ListItemIcon>
-          <FolderIcon />
-        </ListItemIcon>
-        <ListItemText inset primary="content/" />
-        <ExpandLess />
-      </ListItem>
-      <Collapse in={true} timeout="auto" unmountOnExit>
-        <List component="div" style={{paddingLeft: '1em'}}>
-          {
-            filenames.map((filename, index) =>
-              <File key={index} filename={filename} />
-            )
-          }
-        </List>
-      </Collapse>
+      <div className={classes.fileList}>
+        <ListItem>
+          <ListItemIcon>
+            <Folder />
+          </ListItemIcon>
+          <ListItemText inset primary="content/" />
+          <ExpandLess />
+        </ListItem>
+        <Collapse in={true} timeout="auto" unmountOnExit>
+          <List component="div" style={{paddingLeft: '1em'}}>
+            {
+              filenames.map((filename, index) =>
+                <File key={index} filename={filename} />
+              )
+            }
+          </List>
+        </Collapse>
+      </div>
     </List>
   </div>
 
 Files.propTypes = {
+  classes: PropTypes.object.isRequired,
   filenames: PropTypes.array.isRequired
 };
 
-export default Files;
+export default withStyles(styles)(Files);

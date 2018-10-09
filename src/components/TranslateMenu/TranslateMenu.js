@@ -3,18 +3,13 @@ import PropTypes from 'prop-types';
 import IconButton from '@material-ui/core/IconButton';
 import MenuItem from '@material-ui/core/MenuItem';
 import Menu from '@material-ui/core/Menu';
+import ListItemIcon from '@material-ui/core/ListItemIcon';
+import ListItemText from '@material-ui/core/ListItemText';
+
 import { withStyles } from '@material-ui/core/styles';
-import Translate from '@material-ui/icons/Translate';
+import {Translate, ArrowLeft, ArrowRight} from '@material-ui/icons';
 
 const styles = theme => ({
-  root: {
-  },
-  sectionDesktop: {
-    display: 'none',
-    [theme.breakpoints.up('md')]: {
-      display: 'flex',
-    },
-  },
   sectionMobile: {
     display: 'flex',
     [theme.breakpoints.up('md')]: {
@@ -49,8 +44,28 @@ class TranslateMenu extends React.Component {
         open={isMenuOpen}
         onClose={this.handleMenuClose}
       >
-        <MenuItem onClick={this.handleClose}>Source</MenuItem>
-        <MenuItem onClick={this.handleClose}>Target</MenuItem>
+        <MenuItem onClick={this.handleClose}>
+          <ListItemIcon className={classes.icon}>
+            <ArrowLeft />
+          </ListItemIcon>
+          <ListItemText
+            classes={{ primary: classes.primary }}
+            inset
+            primary="(EN) English"
+            secondary="Source"
+          />
+        </MenuItem>
+        <MenuItem onClick={this.handleClose}>
+          <ListItemIcon className={classes.icon}>
+            <ArrowRight />
+          </ListItemIcon>
+          <ListItemText
+            classes={{ primary: classes.primary }}
+            inset
+            primary="(HI) Hindi"
+            secondary="Target"
+          />
+        </MenuItem>
       </Menu>
     );
 

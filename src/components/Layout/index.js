@@ -2,15 +2,18 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import { withStyles } from '@material-ui/core/styles';
-import Drawer from '@material-ui/core/Drawer';
-import AppBar from '@material-ui/core/AppBar';
-import Toolbar from '@material-ui/core/Toolbar';
-import Typography from '@material-ui/core/Typography';
-import Divider from '@material-ui/core/Divider';
-import IconButton from '@material-ui/core/IconButton';
-import MenuIcon from '@material-ui/icons/Menu';
-import ChevronLeftIcon from '@material-ui/icons/ChevronLeft';
-import ChevronRightIcon from '@material-ui/icons/ChevronRight';
+import {
+  Drawer,
+  AppBar,
+  Toolbar,
+  Typography,
+  Divider,
+  IconButton
+} from '@material-ui/core';
+import {
+  Menu,
+  ChevronLeft
+} from '@material-ui/icons';
 
 import Files from '../Files';
 import TranslateMenu from '../TranslateMenu'
@@ -47,9 +50,9 @@ class Layout extends React.Component {
         }}
       >
         <div className={classes.drawerHeader}>
-          <IconButton onClick={this.handleDrawerClose}>
-            {theme.direction === 'rtl' ? <ChevronRightIcon /> : <ChevronLeftIcon />}
-          </IconButton>
+          <Typography variant='subheading'>
+            Files
+          </Typography>
         </div>
         <Divider />
         <Files filenames={filenames} />
@@ -72,7 +75,7 @@ class Layout extends React.Component {
                 onClick={this.handleDrawerOpen}
                 className={classNames(classes.menuButton, open && classes.hide)}
               >
-                <MenuIcon />
+                <Menu />
               </IconButton>
               <Typography variant="title" color="inherit" noWrap>
                 translateMarkdown
