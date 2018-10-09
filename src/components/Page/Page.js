@@ -2,8 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import Grid from '@material-ui/core/Grid';
 import IconButton from '@material-ui/core/IconButton';
-import { LabelImportant } from '@material-ui/icons';
-import Switch from '@material-ui/core/Switch';
+import { CheckCircle, LabelImportant } from '@material-ui/icons';
 
 import Block from '../Block';
 
@@ -21,8 +20,10 @@ export const Page = () => {
         <Block markdown={sourceLine} />
       </Grid>
       <Grid item xs={1} alignContent="center">
-        <Switch defaultChecked value="checked" color="primary" />
         <IconButton aria-label="Complete">
+          <CheckCircle fontSize="small" />
+        </IconButton>
+        <IconButton aria-label="Copy">
           <LabelImportant fontSize="small" />
         </IconButton>
       </Grid>
