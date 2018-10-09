@@ -23,9 +23,11 @@ export const Page = () => {
         <IconButton aria-label="Complete">
           <CheckCircle fontSize="small" />
         </IconButton>
+        <br/>
         <IconButton aria-label="Copy">
           <LabelImportant fontSize="small" />
         </IconButton>
+        <br/>
         <IconButton aria-label="Copy">
           <GTranslate fontSize="small" />
         </IconButton>
