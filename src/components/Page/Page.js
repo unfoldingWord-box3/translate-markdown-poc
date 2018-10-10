@@ -11,6 +11,7 @@ import {
   GTranslate,
   Translate,
   Settings,
+  AddCircle,
 } from '@material-ui/icons';
 
 import Block from '../Block';
@@ -72,6 +73,9 @@ export const Page = () => {
           />
         </Grid>
         <Grid item xs={1} style={{ textAlign: "center", minWidth: '3em', padding: 0, }}>
+          <IconButton aria-label="Add Source">
+            <AddCircle fontSize="small" />
+          </IconButton>
         </Grid>
         <Grid item xs={4}>
           <Chip
