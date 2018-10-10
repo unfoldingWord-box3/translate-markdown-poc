@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import Paper from '@material-ui/core/Paper';
 import ReactMarkdown from 'react-markdown';
 
-export const Block = ({markdown, editable}) =>
+export const Block = ({markdown, editable, reverse}) =>
   <Paper
     contentEditable={editable}
     style={{
@@ -11,6 +11,7 @@ export const Block = ({markdown, editable}) =>
       background: !editable ? '#eee' : 'transparent',
       padding: '0 1em',
       minHeight: '9em',
+      transform: reverse ? 'rotateY(180deg)' : '',
     }}
   >
     <ReactMarkdown className='markdown' source={markdown} />
@@ -19,6 +20,7 @@ export const Block = ({markdown, editable}) =>
 Block.propTypes = {
   markdown: PropTypes.string.isRequired,
   editable: PropTypes.bool,
+  reverse: PropTypes.bool,
 }
 
 export default Block;
