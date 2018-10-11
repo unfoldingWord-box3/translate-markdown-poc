@@ -55,6 +55,11 @@ export const Files = ({filenames, classes}) =>
                 />
               )
             }
+            <ListItem />
+            <ListItem />
+            <ListItem />
+            <ListItem />
+            <ListItem />
           </List>
         </Collapse>
       </div>

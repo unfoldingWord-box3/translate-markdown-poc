@@ -37,7 +37,7 @@ class Layout extends React.Component {
     const { classes, theme } = this.props;
     const { open } = this.state;
 
-    const filenames = [...Array(49).keys()]
+    const filenames = [...Array(50).keys()]
       .map(number => '' + (number + 1) + '.md');
 
     const drawer = (
