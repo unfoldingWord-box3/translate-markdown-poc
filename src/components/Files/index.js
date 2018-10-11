@@ -26,15 +26,18 @@ const styles = theme => ({
   }
 });
 
+const selected = '10.md';
+
 export const Files = ({filenames, classes}) =>
 
   <div className={classes.files}>
     <List
       className={classes.files}
       component="nav"
+      dense
     >
       <div className={classes.fileList}>
-        <ListItem>
+        <ListItem style={{paddingLeft: '1em'}}>
           <ListItemIcon>
             <Folder />
           </ListItemIcon>
@@ -42,10 +45,14 @@ export const Files = ({filenames, classes}) =>
           <ExpandLess />
         </ListItem>
         <Collapse in={true} timeout="auto" unmountOnExit>
-          <List component="div" style={{paddingLeft: '1em'}}>
+          <List dense>
             {
               filenames.map((filename, index) =>
-                <File key={index} filename={filename} />
+                <File
+                  key={index}
+                  filename={filename}
+                  selected={(filename === selected)}
+                />
               )
             }
           </List>

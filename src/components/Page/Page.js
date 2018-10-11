@@ -46,7 +46,7 @@ export const Page = () => {
         </IconButton>
       </Grid>
       <Grid item xs={4}>
-        <Block markdown={targetArray[index]} editable='true' />
+        <Block markdown={targetArray[index]} editable={true} />
       </Grid>
     </Grid>
   );

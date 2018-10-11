@@ -22,7 +22,7 @@ import styles from './styles';
 
 class Layout extends React.Component {
   state = {
-    open: false,
+    open: true,
   };
 
   handleDrawerOpen = () => {
