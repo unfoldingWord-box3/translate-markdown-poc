@@ -6,9 +6,6 @@ import {
   Chip,
 } from '@material-ui/core';
 import {
-  CheckCircle,
-  LabelImportant,
-  GTranslate,
   Translate,
   Settings,
   AddCircle,
@@ -25,25 +22,12 @@ export const Page = () => {
   const targetArray = targetMarkdown.split(/\n/)
     .filter(line => {return line !== ''});
   const blocks = sourceArray.map((sourceLine, index) =>
-    <Grid container wrap="nowrap" key={index} alignItems="center" spacing={16}>
+    <Grid container wrap="nowrap" key={index} spacing={16}>
       <Grid component="div" item xs={4}>
         <Block markdown={sourceLine} reverse />
       </Grid>
       <Grid item xs={4}>
         <Block markdown={sourceLine} />
-      </Grid>
-      <Grid item xs={1} style={{ textAlign: "center", minWidth: '3em', padding: 0, }}>
-        <IconButton aria-label="Complete">
-          <CheckCircle fontSize="small" />
-        </IconButton>
-        <br/>
-        <IconButton aria-label="Copy">
-          <LabelImportant fontSize="small" />
-        </IconButton>
-        <br/>
-        <IconButton aria-label="Copy">
-          <GTranslate fontSize="small" />
-        </IconButton>
       </Grid>
       <Grid item xs={4}>
         <Block markdown={targetArray[index]} editable={true} />
@@ -53,7 +37,7 @@ export const Page = () => {
 
   return (
     <div>
-      <Grid container wrap="nowrap" alignItems="center" spacing={16}>
+      <Grid container wrap="nowrap" spacing={16}>
         <Grid component="div" item xs={4}>
           <Chip
             icon={<Translate />}
@@ -71,11 +55,6 @@ export const Page = () => {
             variant="outlined"
             style={{justifyContent: 'space-between', width: '100%', background: '#eee'}}
           />
-        </Grid>
-        <Grid item xs={1} style={{ textAlign: "center", minWidth: '3em', padding: 0, }}>
-          <IconButton aria-label="Add Source">
-            <AddCircle fontSize="small" />
-          </IconButton>
         </Grid>
         <Grid item xs={4}>
           <Chip
