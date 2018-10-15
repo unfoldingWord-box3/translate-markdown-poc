@@ -34,11 +34,8 @@ class Layout extends React.Component {
   };
 
   render() {
-    const { classes, theme } = this.props;
+    const { classes } = this.props;
     const { open } = this.state;
-
-    const filenames = [...Array(50).keys()]
-      .map(number => '' + (number + 1) + '.md');
 
     const drawer = (
       <Drawer
@@ -58,7 +55,7 @@ class Layout extends React.Component {
           </IconButton>
         </div>
         <Divider />
-        <Files filenames={filenames} />
+        <Files />
       </Drawer>
     );
 

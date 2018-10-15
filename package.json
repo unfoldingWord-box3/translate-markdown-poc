@@ -9,6 +9,7 @@
     "fs-extra": "^7.0.0",
     "rc-checkbox": "^2.1.5",
     "react": "^16.5.2",
+    "react-bootstrap": "^0.32.4",
     "react-dom": "^16.5.2",
     "react-markdown": "^4.0.1",
     "react-scripts": "2.0.3"

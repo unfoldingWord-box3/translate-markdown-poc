@@ -26,9 +26,11 @@ const styles = theme => ({
   }
 });
 
-const selected = '10.md';
+const filenames = [...Array(50).keys()];
 
-export const Files = ({filenames, classes}) =>
+const selected = '10';
+
+export const Files = ({classes}) =>
 
   <div className={classes.files}>
     <List
@@ -50,8 +52,10 @@ export const Files = ({filenames, classes}) =>
               filenames.map((filename, index) =>
                 <File
                   key={index}
-                  filename={filename}
-                  selected={(filename === selected)}
+                  filename={'' + (filename + 1) + '.md'}
+                  selected={(filename + 1 + '' === selected)}
+                  percentTranslated={100 - filename}
+                  percentVerified={100 - (2 * filename)}
                 />
               )
             }
@@ -68,7 +72,6 @@ export const Files = ({filenames, classes}) =>
 
 Files.propTypes = {
   classes: PropTypes.object.isRequired,
-  filenames: PropTypes.array.isRequired
 };
 
 export default withStyles(styles)(Files);

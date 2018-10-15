@@ -4,13 +4,24 @@ import {
   ListItem,
   ListItemIcon,
   ListItemText,
-  LinearProgress,
 } from '@material-ui/core';
 import {
   Note,
 } from '@material-ui/icons';
+import {
+  ProgressBar,
+} from 'react-bootstrap';
 
-export const File = ({filename, selected}) =>
+import { withStyles } from '@material-ui/core/styles';
+
+const styles = theme => ({
+  dashedColorPrimary: {
+    backgroundImage: '',
+    background: '#eee',
+  }
+});
+
+export const File = ({classes, filename, selected, percentTranslated ,percentVerified}) =>
   <ListItem
     button
     selected={selected}
@@ -22,15 +33,24 @@ export const File = ({filename, selected}) =>
     <ListItemText
       primary={filename}
     />
-    <LinearProgress
-    variant="buffer"
-    value={10}
-    valueBuffer={20}
-    />
+    <ProgressBar style={{ width: '3em', height: '1em', backgroundColor: '#eee'}}>
+      <ProgressBar
+        style={{height: '100%', backgroundColor: '#aaa', float: 'left', }}
+        now={percentVerified}
+      />
+      <ProgressBar
+        style={{height: '100%', backgroundColor: '#ccc', float: 'left', }}
+        now={percentTranslated - percentVerified}
+      />
+    </ProgressBar>
   </ListItem>
 
 File.propTypes = {
-  filename: PropTypes.string.isRequired
+  classes: PropTypes.object.isRequired,
+  filename: PropTypes.string.isRequired,
+  selected: PropTypes.bool,
+  percentTranslated: PropTypes.number,
+  percentVerified: PropTypes.number,
 }
 
-export default File;
+export default withStyles(styles)(File);

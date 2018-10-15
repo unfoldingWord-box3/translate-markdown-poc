@@ -25,7 +25,7 @@ export const Page = () => {
   const targetArray = targetMarkdown.split(/\n/)
     .filter(line => {return line !== ''});
   const blocks = sourceArray.map((sourceLine, index) =>
-    <Grid container wrap="nowrap" key={index} alignItems="center" xs={13} spacing={16}>
+    <Grid container wrap="nowrap" key={index} alignItems="center" spacing={16}>
       <Grid component="div" item xs={4}>
         <Block markdown={sourceLine} reverse />
       </Grid>
@@ -53,12 +53,12 @@ export const Page = () => {
 
   return (
     <div>
-      <Grid container wrap="nowrap" alignItems="center" xs={13} spacing={16}>
+      <Grid container wrap="nowrap" alignItems="center" spacing={16}>
         <Grid component="div" item xs={4}>
           <Chip
             icon={<Translate />}
             label={"(NE) Hsilgne"}
-            onDelete={{}}
+            onDelete={()=>{}}
             variant="outlined"
             style={{justifyContent: 'space-between', width: '100%', background: '#eee'}}
           />
@@ -67,7 +67,7 @@ export const Page = () => {
           <Chip
             icon={<Translate />}
             label={"(EN) English"}
-            onDelete={{}}
+            onDelete={()=>{}}
             variant="outlined"
             style={{justifyContent: 'space-between', width: '100%', background: '#eee'}}
           />
@@ -81,7 +81,7 @@ export const Page = () => {
           <Chip
             icon={<Translate />}
             label={"(HI) Hindi"}
-            onDelete={{}}
+            onDelete={()=>{}}
             deleteIcon={<Settings />}
             variant="outlined"
             style={{justifyContent: 'space-between', width: '100%'}}
