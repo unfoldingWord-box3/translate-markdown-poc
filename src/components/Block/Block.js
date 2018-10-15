@@ -13,20 +13,20 @@ import ReactMarkdown from 'react-markdown';
 
 export const Block = ({markdown, editable, reverse}) =>
   <Paper
-    contentEditable={editable}
     style={{
       border: '1px solid #ccc',
       background: !editable ? '#eee' : 'transparent',
-      padding: '0 1em',
     }}
   >
-    <ReactMarkdown
-      className='markdown'
-      source={markdown}
+    <div
+      contentEditable={editable}
       style={{
+        padding: '0 1em',
         transform: reverse ? 'rotateY(180deg)' : '',
       }}
-    />
+    >
+      <ReactMarkdown className='markdown' source={markdown} />
+    </div>
 
     { editable ?
       (<div style={{display: 'flex', justifyContent: 'space-between'}}>
