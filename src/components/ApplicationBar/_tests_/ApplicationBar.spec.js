@@ -1,13 +1,16 @@
 import React from 'react'
-import { TranslateMenu } from '../TranslateMenu'
+import { AppBar } from '../AppBar'
 
-describe('TranslateMenu', () => {
+describe('AppBar', () => {
   let component
+  let instance
 
   beforeEach(() => {
     component = shallow(
-      <TranslateMenu />
+      <AppBar />
     )
+
+    instance = component.instance()
   })
 
   it('should render', () => {

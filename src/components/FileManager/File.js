@@ -15,17 +15,31 @@ import {
 import { withStyles } from '@material-ui/core/styles';
 
 const styles = theme => ({
-  dashedColorPrimary: {
-    backgroundImage: '',
-    background: '#eee',
-  }
+  fileList: {
+    paddingLeft: '2em',
+  },
+  progressBar: {
+    width: '3em',
+    height: '1em',
+    backgroundColor: '#eee',
+  },
+  progressVerified: {
+    height: '100%',
+    backgroundColor: '#aaa',
+    float: 'left',
+  },
+  progressTranslated: {
+    height: '100%',
+    backgroundColor: '#ccc',
+    float: 'left',
+  },
 });
 
 export const File = ({classes, filename, selected, percentTranslated ,percentVerified}) =>
   <ListItem
     button
     selected={selected}
-    style={{paddingLeft: '2em'}}
+    className={classes.fileList}
   >
     <ListItemIcon>
       <Note />
@@ -33,13 +47,13 @@ export const File = ({classes, filename, selected, percentTranslated ,percentVer
     <ListItemText
       primary={filename}
     />
-    <ProgressBar style={{ width: '3em', height: '1em', backgroundColor: '#eee'}}>
+    <ProgressBar className={classes.progressBar}>
       <ProgressBar
-        style={{height: '100%', backgroundColor: '#aaa', float: 'left', }}
+        className={classes.progressVerified}
         now={percentVerified}
       />
       <ProgressBar
-        style={{height: '100%', backgroundColor: '#ccc', float: 'left', }}
+        className={classes.progressTranslated}
         now={percentTranslated - percentVerified}
       />
     </ProgressBar>

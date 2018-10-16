@@ -1,12 +1,12 @@
 import React from 'react'
-import { Layout } from '../Layout'
+import { index } from '../index'
 
-describe('Layout', () => {
+describe('index', () => {
   let component
 
   beforeEach(() => {
     component = shallow(
-      <Layout />
+      <index />
     )
   })
 

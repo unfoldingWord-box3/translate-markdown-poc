@@ -1,13 +1,16 @@
 import React from 'react'
-import { Content } from '../Content'
+import { Workspace } from '../Workspace'
 
-describe('Content', () => {
+describe('Workspace', () => {
   let component
+  let instance
 
   beforeEach(() => {
     component = shallow(
-      <Content />
+      <Workspace />
     )
+
+    instance = component.instance()
   })
 
   it('should render', () => {

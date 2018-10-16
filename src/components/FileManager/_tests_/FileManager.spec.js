@@ -1,16 +1,13 @@
 import React from 'react'
-import { Block } from '../Block'
+import { FileManager } from '../FileManager'
 
-describe('Block', () => {
+describe('FileManager', () => {
   let component
-  let instance
 
   beforeEach(() => {
     component = shallow(
-      <Block />
+      <FileManager />
     )
-
-    instance = component.instance()
   })
 
   it('should render', () => {
