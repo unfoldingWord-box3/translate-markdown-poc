@@ -15,6 +15,11 @@ const styles = theme => ({
   root: {
     border: '1px solid #ccc',
   },
+  buttons: {
+    width: 'auto',
+    marginTop: '-1.7em',
+    textAlign: 'right',
+  },
 })
 
 export const Block = ({classes, markdown, editable, reverse}) =>
@@ -35,7 +40,7 @@ export const Block = ({classes, markdown, editable, reverse}) =>
     </div>
 
     { editable ?
-      (<div style={{display: 'flex', justifyContent: 'space-between'}}>
+      (<div className={classes.buttons}>
         <IconButton aria-label="Complete">
           <CheckCircle fontSize="small" />
         </IconButton>
