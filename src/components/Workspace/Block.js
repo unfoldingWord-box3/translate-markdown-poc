@@ -1,20 +1,26 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import { withStyles } from '@material-ui/core/styles';
+
 import {
   Paper,
   IconButton,
 } from '@material-ui/core';
 import {
   CheckCircle,
-  LabelImportant,
-  GTranslate,
 } from '@material-ui/icons';
 import ReactMarkdown from 'react-markdown';
 
-export const Block = ({markdown, editable, reverse}) =>
+const styles = theme => ({
+  root: {
+    border: '1px solid #ccc',
+  },
+})
+
+export const Block = ({classes, markdown, editable, reverse}) =>
   <Paper
+    className={classes.root}
     style={{
-      border: '1px solid #ccc',
       background: !editable ? '#eee' : 'transparent',
     }}
   >
@@ -35,14 +41,7 @@ export const Block = ({markdown, editable, reverse}) =>
         </IconButton>
       </div>)
     :
-      (<div style={{display: 'flex'}}>
-        <IconButton aria-label="Copy">
-          <LabelImportant fontSize="small" />
-        </IconButton>
-        <IconButton aria-label="Copy">
-          <GTranslate fontSize="small" />
-        </IconButton>
-      </div>)
+      (<div />)
     }
   </Paper>
 
@@ -52,4 +51,4 @@ Block.propTypes = {
   reverse: PropTypes.bool,
 }
 
-export default Block;
+export default withStyles(styles)(Block);
