@@ -2,6 +2,8 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
 
+import './Application.css';
+
 import ApplicationBar from './ApplicationBar';
 import Workspace from './Workspace';
 
