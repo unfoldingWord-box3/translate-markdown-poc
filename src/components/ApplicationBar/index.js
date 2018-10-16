@@ -1,2 +1,2 @@
-import ApplicationBar from './ApplicationBar'
-export default ApplicationBar
+import ApplicationBarContainer from './ApplicationBarContainer';
+export default ApplicationBarContainer;

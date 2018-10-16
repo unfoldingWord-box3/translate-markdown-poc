@@ -1,2 +1,2 @@
-import FileManager from './FileManager'
-export default FileManager
+import FileManagerContainer from './FileManagerContainer'
+export default FileManagerContainer

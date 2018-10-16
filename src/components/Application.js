@@ -2,15 +2,15 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
 
-import ApplicationBarContainer from './ApplicationBarContainer';
-import WorkspaceContainer from './WorkspaceContainer';
+import ApplicationBar from './ApplicationBar';
+import Workspace from './Workspace';
 
 export const Application = ({classes}) =>
   <div className={classes.root}>
     <div className={classes.appFrame}>
-      <ApplicationBarContainer />
+      <ApplicationBar />
       <main className={classes.main}>
-        <WorkspaceContainer />
+        <Workspace />
       </main>
     </div>
   </div>
