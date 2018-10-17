@@ -11,46 +11,36 @@ import {
 
 import Block from './Block';
 
-export const Workspace = ({sources, target}) => {
-  const blocks = sources[0].map((sourceLine, index) =>
-    <Grid container wrap="nowrap" key={index} spacing={16}>
-      <Grid component="div" item xs={4}>
-        <Block markdown={sourceLine} reverse />
+export const Workspace = ({source, target}) => {
+  let blocks;
+  let headers;
+  if (source && target) {
+    blocks = source.blocks.map((sourceLine, index) =>
+      <Grid container wrap="nowrap" key={index} spacing={16}>
+        <Grid item xs={6}>
+          <Block markdown={sourceLine} />
+        </Grid>
+        <Grid item xs={6}>
+          <Block markdown={target.blocks[index]} editable={true} />
+        </Grid>
       </Grid>
-      <Grid item xs={4}>
-        <Block markdown={sourceLine} />
-      </Grid>
-      <Grid item xs={4}>
-        <Block markdown={target[index]} editable={true} />
-      </Grid>
-    </Grid>
-  );
+    );
 
-  return (
-    <div>
+    headers = (
       <Grid container wrap="nowrap" spacing={16}>
-        <Grid component="div" item xs={4}>
+        <Grid item xs={6}>
           <Chip
             icon={<Translate />}
-            label={"(NE) Hsilgne"}
+            label={'(' + source.languageId + ') ' + source.languageName}
             onDelete={()=>{}}
             variant="outlined"
             style={{justifyContent: 'space-between', width: '100%', background: '#eee'}}
           />
         </Grid>
-        <Grid item xs={4}>
+        <Grid item xs={6}>
           <Chip
             icon={<Translate />}
-            label={"(EN) English"}
-            onDelete={()=>{}}
-            variant="outlined"
-            style={{justifyContent: 'space-between', width: '100%', background: '#eee'}}
-          />
-        </Grid>
-        <Grid item xs={4}>
-          <Chip
-            icon={<Translate />}
-            label={"(HI) Hindi"}
+            label={'(' + target.languageId + ') ' + target.languageName}
             onDelete={()=>{}}
             deleteIcon={<Settings />}
             variant="outlined"
@@ -58,14 +48,20 @@ export const Workspace = ({sources, target}) => {
           />
         </Grid>
       </Grid>
+    );
+  }
+
+  return (
+    <div>
+      {headers}
       {blocks}
     </div>
   );
 }
 
 Workspace.propTypes = {
-  sources: PropTypes.array.isRequired,
-  target: PropTypes.array.isRequired,
+  source: PropTypes.object.isRequired,
+  target: PropTypes.object.isRequired,
 }
 
 export default Workspace;
