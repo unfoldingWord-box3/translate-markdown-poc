@@ -1,13 +1,14 @@
 {
-  "main.css": "/translate-markdown/static/css/main.d12c4a5c.chunk.css",
-  "main.js": "/translate-markdown/static/js/main.758d7e97.chunk.js",
-  "main.js.map": "/translate-markdown/static/js/main.758d7e97.chunk.js.map",
-  "static/js/1.dd9f410b.chunk.js": "/translate-markdown/static/js/1.dd9f410b.chunk.js",
-  "static/js/1.dd9f410b.chunk.js.map": "/translate-markdown/static/js/1.dd9f410b.chunk.js.map",
+  "main.css": "/translate-markdown/static/css/main.c842ade3.chunk.css",
+  "main.js": "/translate-markdown/static/js/main.9a0d6382.chunk.js",
+  "main.js.map": "/translate-markdown/static/js/main.9a0d6382.chunk.js.map",
+  "static/js/1.754244c1.chunk.js": "/translate-markdown/static/js/1.754244c1.chunk.js",
+  "static/js/1.754244c1.chunk.js.map": "/translate-markdown/static/js/1.754244c1.chunk.js.map",
   "runtime~main.js": "/translate-markdown/static/js/runtime~main.f92fbe3a.js",
   "runtime~main.js.map": "/translate-markdown/static/js/runtime~main.f92fbe3a.js.map",
-  "static/css/main.d12c4a5c.chunk.css.map": "/translate-markdown/static/css/main.d12c4a5c.chunk.css.map",
+  "static/css/main.c842ade3.chunk.css.map": "/translate-markdown/static/css/main.c842ade3.chunk.css.map",
+  "static/media/01.md": "/translate-markdown/static/media/01.798eac2c.md",
   "index.html": "/translate-markdown/index.html",
-  "precache-manifest.d6829e38c5c85b937de6ccd2ecdca3e8.js": "/translate-markdown/precache-manifest.d6829e38c5c85b937de6ccd2ecdca3e8.js",
+  "precache-manifest.16d51787d82b07bb499ac9a4de3c36a7.js": "/translate-markdown/precache-manifest.16d51787d82b07bb499ac9a4de3c36a7.js",
   "service-worker.js": "/translate-markdown/service-worker.js"
 }
