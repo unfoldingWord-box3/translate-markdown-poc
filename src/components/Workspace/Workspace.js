@@ -1,5 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import { withStyles } from '@material-ui/core/styles';
 import {
   Grid,
   Chip,
@@ -11,12 +12,18 @@ import {
 
 import Block from './Block';
 
-export const Workspace = ({source, target}) => {
+export const Workspace = ({classes, source, target}) => {
   let blocks;
   let headers;
   if (source && target) {
     blocks = source.blocks.map((sourceLine, index) =>
-      <Grid container wrap="nowrap" key={index} spacing={16}>
+      <Grid
+        key={index}
+        container
+        wrap="nowrap"
+        spacing={16}
+        className={classes.blockRow}
+      >
         <Grid item xs={6}>
           <Block markdown={sourceLine} />
         </Grid>
@@ -62,6 +69,13 @@ export const Workspace = ({source, target}) => {
 Workspace.propTypes = {
   source: PropTypes.object.isRequired,
   target: PropTypes.object.isRequired,
-}
+  classes: PropTypes.object.isRequired,
+};
 
-export default Workspace;
+const styles = theme => ({
+  blockRow: {
+    marginBottom: '0.3em',
+  },
+});
+
+export default withStyles(styles)(Workspace);
