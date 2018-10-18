@@ -1,13 +1,14 @@
 import React from 'react';
 import FileManager from './FileManager';
 
-const filenames = [...Array(50).keys()].map(i => i + 1);
-const selected = '10';
+import fileTree from './fileTree';
+
+const selected = '01.md';
 
 const FileManagerContainer = (props) =>
   <FileManager
     {...props}
-    filenames={filenames}
+    fileTree={fileTree}
     selected={selected}
   />
 
