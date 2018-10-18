@@ -14,6 +14,7 @@ export const fileTree = [
   {
     name: "translate",
     type: "directory",
+    selected: true,
     children: [
       {
         name: "...",
@@ -26,10 +27,12 @@ export const fileTree = [
       {
         name: "figs-metaphor",
         type: "directory",
+        selected: true,
         children: [
           {
             name: "01.md",
             type: "file",
+            selected: true,
           },
           {
             name: "sub-title.md",

@@ -10,9 +10,9 @@ import {
 } from '@material-ui/core';
 import {
   Folder,
-  ExpandLess,
-  ExpandMore,
+  FolderOpen,
   Note,
+  NoteOutlined,
 } from '@material-ui/icons';
 import {
   ProgressBar,
@@ -20,12 +20,16 @@ import {
 
 import Directory from './Directory';
 
-export const File = ({classes, fileObject, depth, selected, percentTranslated ,percentVerified}) => {
+export const File = ({classes, fileObject, depth, percentTranslated ,percentVerified}) => {
 
   const children = (
     <Collapse in={true} timeout="auto" unmountOnExit>
       <List dense className={classes.list}>
-        <Directory fileTree={fileObject.children} selected={selected} depth={depth + 1}/>
+        <Directory
+          fileTree={fileObject.children}
+          selected={fileObject.selected}
+          depth={depth + 1}
+        />
       </List>
     </Collapse>
   )
@@ -41,15 +45,14 @@ export const File = ({classes, fileObject, depth, selected, percentTranslated ,p
         }}
       >
         <ListItemIcon className={classes.listItemIcon}>
-          <Folder fontSize="small" />
+          {
+            fileObject.selected ? <Folder fontSize="small" /> : <FolderOpen fontSize="small" />
+          }
         </ListItemIcon>
         <ListItemText
           inset
           className={classes.listItemText}
           primary={fileObject.name + '/'} />
-        {
-          selected === fileObject.name ? <ExpandLess /> : <ExpandMore />
-        }
       </ListItem>
       {fileObject.children ? children : null}
     </div>
@@ -58,7 +61,7 @@ export const File = ({classes, fileObject, depth, selected, percentTranslated ,p
   const file = (
     <ListItem
       button
-      selected={selected === fileObject.name}
+      selected={fileObject.selected}
       className={classes.fileList}
       style={{
         paddingLeft: depth + 'em',
@@ -66,7 +69,9 @@ export const File = ({classes, fileObject, depth, selected, percentTranslated ,p
       }}
     >
       <ListItemIcon className={classes.listItemIcon}>
-        <Note fontSize="small" />
+        {
+          fileObject.selected ? <Note fontSize="small" /> : <NoteOutlined fontSize="small" />
+        }
       </ListItemIcon>
       <ListItemText
         className={classes.listItemText}
@@ -94,7 +99,6 @@ File.propTypes = {
   classes: PropTypes.object.isRequired,
   fileObject: PropTypes.object.isRequired,
   depth: PropTypes.number.isRequired,
-  selected: PropTypes.bool,
   percentTranslated: PropTypes.number,
   percentVerified: PropTypes.number,
 }

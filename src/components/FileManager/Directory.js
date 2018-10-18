@@ -8,30 +8,24 @@ import {
 
 import File from './File';
 
-export const Directory = ({classes, fileTree, selected, depth}) => {
+export const Directory = ({classes, fileTree, depth}) => {
   const files = fileTree ?
     fileTree.map((fileObject, index) =>
       <File
         key={index}
         fileObject={fileObject}
-        selected={selected}
         depth={depth}
         percentTranslated={100 - 2 * index}
         percentVerified={100 - (4 * index)}
       />
     ) : [];
 
-  return (
-    <div>
-      {files}
-    </div>
-  );
+  return files;
 }
 
 Directory.propTypes = {
   classes: PropTypes.object.isRequired,
   fileTree: PropTypes.array.isRequired,
-  selected: PropTypes.bool,
   depth: PropTypes.number.isRequired,
 }
 const styles = theme => ({

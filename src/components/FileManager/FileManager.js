@@ -8,7 +8,7 @@ import {
 
 import Directory from './Directory';
 
-export const FileManager = ({classes, fileTree, selected}) =>
+export const FileManager = ({classes, fileTree}) =>
   <div className={classes.files}>
     <List
       className={classes.files}
@@ -16,7 +16,7 @@ export const FileManager = ({classes, fileTree, selected}) =>
       dense
     >
       <div className={classes.fileList}>
-        <Directory fileTree={fileTree} depth={1} selected={selected} />
+        <Directory fileTree={fileTree} depth={1} />
         <ListItem />
         <ListItem />
         <ListItem />
@@ -28,7 +28,6 @@ export const FileManager = ({classes, fileTree, selected}) =>
 
 FileManager.propTypes = {
   fileTree: PropTypes.array.isRequired,
-  selected: PropTypes.string.isRequired,
   classes: PropTypes.object.isRequired,
 };
 
