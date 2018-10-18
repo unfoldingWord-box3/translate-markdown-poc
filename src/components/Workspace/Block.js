@@ -11,17 +11,6 @@ import {
 } from '@material-ui/icons';
 import ReactMarkdown from 'react-markdown';
 
-const styles = theme => ({
-  root: {
-    border: '1px solid #ccc',
-  },
-  buttons: {
-    width: 'auto',
-    marginTop: '-1.7em',
-    textAlign: 'right',
-  },
-})
-
 export const Block = ({classes, markdown, editable, reverse}) =>
   <Paper
     className={classes.root}
@@ -55,5 +44,17 @@ Block.propTypes = {
   editable: PropTypes.bool,
   reverse: PropTypes.bool,
 }
+
+const styles = theme => ({
+  root: {
+    border: '1px solid #ccc',
+    height: '100%',
+  },
+  buttons: {
+    width: 'auto',
+    marginTop: '-1.7em',
+    textAlign: 'right',
+  },
+})
 
 export default withStyles(styles)(Block);
