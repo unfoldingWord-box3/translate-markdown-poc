@@ -89,7 +89,7 @@ ApplicationBar.propTypes = {
   theme: PropTypes.object.isRequired,
 };
 
-const drawerWidth = 240;
+const drawerWidth = 280;
 const styles = theme => ({
   appBar: {
     transition: theme.transitions.create(['margin', 'width'], {

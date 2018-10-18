@@ -21,26 +21,37 @@ import {
 import Directory from './Directory';
 
 export const File = ({classes, fileObject, depth, selected, percentTranslated ,percentVerified}) => {
+
+  const children = (
+    <Collapse in={true} timeout="auto" unmountOnExit>
+      <List dense className={classes.list}>
+        <Directory fileTree={fileObject.children} selected={selected} depth={depth + 1}/>
+      </List>
+    </Collapse>
+  )
+
   const directory = (
     <div>
       <ListItem
+        button
+        className={classes.fileList}
         style={{
           paddingLeft: depth + 'em',
+          paddingRight: '0.5em',
         }}
       >
         <ListItemIcon className={classes.listItemIcon}>
-          <Folder />
+          <Folder fontSize="small" />
         </ListItemIcon>
-        <ListItemText inset primary={fileObject.name + '/'} />
+        <ListItemText
+          inset
+          className={classes.listItemText}
+          primary={fileObject.name + '/'} />
         {
           selected === fileObject.name ? <ExpandLess /> : <ExpandMore />
         }
       </ListItem>
-      <Collapse in={true} timeout="auto" unmountOnExit>
-        <List dense>
-          <Directory fileTree={fileObject.children} selected={selected} depth={depth + 1}/>
-        </List>
-      </Collapse>
+      {fileObject.children ? children : null}
     </div>
   );
 
@@ -51,12 +62,14 @@ export const File = ({classes, fileObject, depth, selected, percentTranslated ,p
       className={classes.fileList}
       style={{
         paddingLeft: depth + 'em',
+        paddingRight: '0.7em',
       }}
     >
       <ListItemIcon className={classes.listItemIcon}>
-        <Note />
+        <Note fontSize="small" />
       </ListItemIcon>
       <ListItemText
+        className={classes.listItemText}
         primary={fileObject.name}
       />
       <ProgressBar className={classes.progressBar}>
@@ -87,10 +100,17 @@ File.propTypes = {
 }
 
 const styles = theme => ({
+  list: {
+    paddingTop: 0,
+    paddingBottom: 0,
+  },
   fileList: {
   },
   listItemIcon: {
     marginRight: 0,
+  },
+  listItemText: {
+    paddingLeft: '0.7em',
   },
   progressBar: {
     width: '3em',
