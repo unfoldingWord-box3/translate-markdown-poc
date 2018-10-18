@@ -15,12 +15,14 @@ export const FileManager = ({classes, fileTree, selected}) =>
       component="nav"
       dense
     >
-      <Directory fileTree={fileTree} depth={1} selected />
-      <ListItem />
-      <ListItem />
-      <ListItem />
-      <ListItem />
-      <ListItem />
+      <div className={classes.fileList}>
+        <Directory fileTree={fileTree} depth={1} selected={selected} />
+        <ListItem />
+        <ListItem />
+        <ListItem />
+        <ListItem />
+        <ListItem />
+      </div>
     </List>
   </div>
 
@@ -33,6 +35,10 @@ FileManager.propTypes = {
 const styles = theme => ({
   files: {
     height: '100%',
+  },
+  fileList: {
+    height: '100%',
+    overflowY: 'auto',
   },
 });
 

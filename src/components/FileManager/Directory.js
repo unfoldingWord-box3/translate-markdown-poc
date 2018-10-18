@@ -22,7 +22,7 @@ export const Directory = ({classes, fileTree, selected, depth}) => {
     ) : [];
 
   return (
-    <div className={classes.fileList}>
+    <div>
       {files}
     </div>
   );
@@ -35,13 +35,6 @@ Directory.propTypes = {
   depth: PropTypes.number.isRequired,
 }
 const styles = theme => ({
-  fileList: {
-    height: '100%',
-    overflowY: 'auto',
-  },
-  fileListItem: {
-    paddingLeft: '1em',
-  },
 });
 
 export default withStyles(styles)(Directory);
