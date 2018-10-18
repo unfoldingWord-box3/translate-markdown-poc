@@ -35,6 +35,7 @@ const styles = theme => ({
   main: {
     padding: '5em 1em 1em 1em',
     minWidth: '20em',
+    fontSize: '0.85em',
   }
 });
 
