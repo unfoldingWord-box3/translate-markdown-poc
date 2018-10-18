@@ -74,7 +74,7 @@ class ApplicationBar extends React.Component {
               <Menu />
             </IconButton>
             <Typography variant="title" color="inherit" noWrap>
-              translateMarkdown
+              translationAcademy
             </Typography>
           </Toolbar>
         </AppBar>
