@@ -31,7 +31,7 @@ export const Workspace = ({source, target}) => {
         <Grid item xs={6}>
           <Chip
             icon={<Translate />}
-            label={'(' + source.languageId + ') ' + source.languageName + ' ' + source.version}
+            label={'(' + source.languageId + ') ' + source.languageName + ' - ' + source.version}
             onDelete={()=>{}}
             variant="outlined"
             style={{justifyContent: 'space-between', width: '100%', background: '#eee'}}
@@ -40,7 +40,7 @@ export const Workspace = ({source, target}) => {
         <Grid item xs={6}>
           <Chip
             icon={<Translate />}
-            label={'(' + target.languageId + ') ' + target.languageName + ' ' + source.version}
+            label={'(' + target.languageId + ') ' + target.languageName + ' - ' + source.version}
             onDelete={()=>{}}
             deleteIcon={<Settings />}
             variant="outlined"
