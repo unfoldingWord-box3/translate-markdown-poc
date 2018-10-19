@@ -1,18 +1,27 @@
 import React from 'react';
 import Workspace from './Workspace';
 
-import sourcePath from '../../data/ta/en/v9/translate/figs-metaphor/01.md';
+import source0Path from '../../data/ta/en/v10/translate/figs-metaphor/01.md';
+import source1Path from '../../data/ta/en/v9/translate/figs-metaphor/01.md';
 import targetPath from '../../data/ta/mr/v9/translate/figs-metaphor/01.md';
 
 const files = {
-  source:
+  sources: [
+    {
+      type: 'source',
+      languageName: 'English',
+      languageId: 'EN',
+      version: 'v10',
+      path: source0Path,
+    },
     {
       type: 'source',
       languageName: 'English',
       languageId: 'EN',
       version: 'v9',
-      path: sourcePath,
+      path: source1Path,
     },
+  ],
   target:
     {
       type: 'target',
@@ -27,16 +36,15 @@ class WorkspaceContainer extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      source: null,
+      sources: [],
       target: null,
     }
   };
 
   componentWillMount() {
-    this.fetchFile(files.source)
-      .then(()=>{
-        this.fetchFile(files.target);
-      });
+    this.fetchFile(files.sources[0])
+    .then(()=>{ this.fetchFile(files.sources[1]) })
+    .then(()=>{ this.fetchFile(files.target) });
     ;
   };
 
@@ -46,13 +54,16 @@ class WorkspaceContainer extends React.Component {
       fetch(config.path)
         .then((res) => res.text())
         .then((text) => {
-          const blocks = text.split(/\n\n/)
+          const blocks = text
+            .split(/\n\n/)
             .filter(line => {return line !== ''});
           const data = config;
           data.blocks = blocks
           if (config.type === 'source') {
+            let sources = _this.state.sources;
+            sources.push(data);
             _this.setState({
-              source: data
+              sources: sources
             });
           }
           if (config.type === 'target') {
@@ -69,14 +80,14 @@ class WorkspaceContainer extends React.Component {
   render() {
     const props = this.props;
     let {
-      source,
+      sources,
       target,
     } = this.state;
 
     return (
       <Workspace
         {...props}
-        source={source}
+        sources={sources}
         target={target}
       />
     );
