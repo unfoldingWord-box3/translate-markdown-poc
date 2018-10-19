@@ -21,6 +21,7 @@ export const Block = ({classes, markdown, editable, reverse}) =>
     <div
       contentEditable={editable}
       style={{
+        height: '100%',
         padding: '0 1em',
         transform: reverse ? 'rotateY(180deg)' : '',
       }}
@@ -51,8 +52,9 @@ const styles = theme => ({
     height: '100%',
   },
   buttons: {
+    height: 0,
     width: 'auto',
-    marginTop: '-1.7em',
+    marginTop: '-4em',
     textAlign: 'right',
   },
 })
