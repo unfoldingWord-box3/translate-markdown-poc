@@ -31,7 +31,7 @@ class ApplicationBar extends React.Component {
   };
 
   render() {
-    const { classes, filepath } = this.props;
+    const { classes, projectName, filepath } = this.props;
     const { open } = this.state;
 
     const drawer = (
@@ -74,7 +74,7 @@ class ApplicationBar extends React.Component {
               <Menu />
             </IconButton>
             <Typography variant="title" color="inherit" noWrap>
-              translationAcademy
+              {projectName}
             </Typography>
             <Typography variant="sub-title" color="inherit" className={classes.filepath} noWrap>
               /{filepath}
@@ -90,6 +90,7 @@ class ApplicationBar extends React.Component {
 ApplicationBar.propTypes = {
   classes: PropTypes.object.isRequired,
   theme: PropTypes.object.isRequired,
+  projectName: PropTypes.string.isRequired,
   filepath: PropTypes.string.isRequired,
 };
 
