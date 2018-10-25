@@ -31,7 +31,7 @@ class ApplicationBar extends React.Component {
   };
 
   render() {
-    const { classes } = this.props;
+    const { classes, filepath } = this.props;
     const { open } = this.state;
 
     const drawer = (
@@ -76,6 +76,9 @@ class ApplicationBar extends React.Component {
             <Typography variant="title" color="inherit" noWrap>
               translationAcademy
             </Typography>
+            <Typography variant="sub-title" color="inherit" className={classes.filepath} noWrap>
+              /{filepath}
+            </Typography>
           </Toolbar>
         </AppBar>
         {drawer}
@@ -87,6 +90,7 @@ class ApplicationBar extends React.Component {
 ApplicationBar.propTypes = {
   classes: PropTypes.object.isRequired,
   theme: PropTypes.object.isRequired,
+  filepath: PropTypes.string.isRequired,
 };
 
 const drawerWidth = 280;
@@ -122,8 +126,11 @@ const styles = theme => ({
     padding: '0 8px 0 1em',
     ...theme.mixins.toolbar,
   },
-  'toolbar': {
-    width: '100%'
+  toolbar: {
+    width: '100%',
+  },
+  filepath: {
+    // marginLeft: '0.1em',
   },
 });
 
