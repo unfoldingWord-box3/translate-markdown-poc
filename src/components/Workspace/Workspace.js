@@ -15,7 +15,8 @@ import Block from './Block';
 export const Workspace = ({classes, sources, target}) => {
   let blocks;
   let headers;
-  if (sources[1] && target) {
+  let xsWidth = 12 / (sources.length + 1);
+  if (sources[0] && target) {
     blocks = sources[0].blocks.map((sourceLine, index) =>
       <Grid
         key={index}
@@ -24,13 +25,14 @@ export const Workspace = ({classes, sources, target}) => {
         spacing={16}
         className={classes.blockRow}
       >
-        <Grid item xs={6}>
-          <Block markdown={sourceLine} />
-        </Grid>
-        <Grid item xs={6}>
-          <Block markdown={sources[1].blocks[index]} />
-        </Grid>
-        <Grid item xs={6}>
+        {
+          sources.map((e,_index) =>
+            <Grid item xs={xsWidth}>
+              <Block markdown={sources[_index].blocks[index]} />
+            </Grid>
+          )
+        }
+        <Grid item xs={xsWidth}>
           <Block markdown={target.blocks[index]} editable={true} />
         </Grid>
       </Grid>
@@ -38,25 +40,20 @@ export const Workspace = ({classes, sources, target}) => {
 
     headers = (
       <Grid container wrap="nowrap" spacing={16}>
-        <Grid item xs={6}>
-          <Chip
-            icon={<Translate />}
-            label={'(' + sources[0].languageId + ') ' + sources[0].languageName + ' - ' + sources[0].version}
-            onDelete={()=>{}}
-            variant="outlined"
-            style={{justifyContent: 'space-between', width: '100%', background: '#eee'}}
-          />
-        </Grid>
-        <Grid item xs={6}>
-          <Chip
-            icon={<Translate />}
-            label={'(' + sources[1].languageId + ') ' + sources[1].languageName + ' - ' + sources[1].version}
-            onDelete={()=>{}}
-            variant="outlined"
-            style={{justifyContent: 'space-between', width: '100%', background: '#eee'}}
-          />
-        </Grid>
-        <Grid item xs={6}>
+        {
+          sources.map((e,_index) =>
+            <Grid item xs={xsWidth}>
+              <Chip
+                icon={<Translate />}
+                label={'(' + sources[_index].languageId + ') ' + sources[_index].languageName + ' - ' + sources[_index].version}
+                onDelete={()=>{}}
+                variant="outlined"
+                style={{justifyContent: 'space-between', width: '100%', background: '#eee'}}
+              />
+            </Grid>
+          )
+        }
+        <Grid item xs={xsWidth}>
           <Chip
             icon={<Translate />}
             label={'(' + target.languageId + ') ' + target.languageName + ' - ' + target.version}

@@ -1,19 +1,19 @@
 import React from 'react';
 import Workspace from './Workspace';
 
-import source0Path from '../../data/ta/en/v10/translate/figs-metaphor/01.md';
+// import source0Path from '../../data/ta/en/v10/translate/figs-metaphor/01.md';
 import source1Path from '../../data/ta/en/v9/translate/figs-metaphor/01.md';
 import targetPath from '../../data/ta/mr/v9/translate/figs-metaphor/01.md';
 
 const files = {
   sources: [
-    {
-      type: 'source',
-      languageName: 'English',
-      languageId: 'EN',
-      version: 'v10',
-      path: source0Path,
-    },
+    // {
+    //   type: 'source',
+    //   languageName: 'English',
+    //   languageId: 'EN',
+    //   version: 'v10',
+    //   path: source0Path,
+    // },
     {
       type: 'source',
       languageName: 'English',
@@ -43,7 +43,7 @@ class WorkspaceContainer extends React.Component {
 
   componentWillMount() {
     this.fetchFile(files.sources[0])
-    .then(()=>{ this.fetchFile(files.sources[1]) })
+    // .then(()=>{ this.fetchFile(files.sources[1]) })
     .then(()=>{ this.fetchFile(files.target) });
     ;
   };

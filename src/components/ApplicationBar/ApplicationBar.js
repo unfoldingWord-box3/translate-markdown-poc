@@ -19,7 +19,7 @@ import FileManager from '../FileManager';
 
 class ApplicationBar extends React.Component {
   state = {
-    open: true,
+    open: false,
   };
 
   handleDrawerOpen = () => {
