@@ -5,6 +5,9 @@ import Workspace from './Workspace';
 import source1Path from '../../data/ta/en/v9/translate/figs-metaphor/01.md';
 import targetPath from '../../data/ta/mr/v9/translate/figs-metaphor/01.md';
 
+import * as helpers from './helpers';
+import './workspace.css';
+
 const files = {
   sources: [
     // {
@@ -41,41 +44,34 @@ class WorkspaceContainer extends React.Component {
     }
   };
 
-  componentWillMount() {
-    this.fetchFile(files.sources[0])
-    // .then(()=>{ this.fetchFile(files.sources[1]) })
-    .then(()=>{ this.fetchFile(files.target) });
-    ;
-  };
-
-  fetchFile(config) {
-    const _this = this;
-    const promise = new Promise((resolve) => {
-      fetch(config.path)
-        .then((res) => res.text())
-        .then((text) => {
-          const blocks = text
-            .split(/\n\n/)
-            .filter(line => {return line !== ''});
-          const data = config;
-          data.blocks = blocks
-          if (config.type === 'source') {
-            let sources = _this.state.sources;
-            sources.push(data);
-            _this.setState({
-              sources: sources
-            });
-          }
-          if (config.type === 'target') {
-            _this.setState({
-              target: data
-            });
-          }
-          resolve();
+  componentDidMount() {
+    helpers.fetchFile(files.sources[0])
+    .then(data => {
+      let sources = this.state.sources;
+      sources.push(data);
+      this.setState({
+        sources: sources
+      });
+    })
+    .then(()=>{
+      // helpers.fetchFile(files.sources[1])
+      // .then(data => {
+      //   let sources = this.state.sources;
+      //   sources.push(data);
+      //   this.setState({
+      //     sources: sources
+      //   });
+      // })
+      // .then(()=>{
+        helpers.fetchFile(files.target)
+        .then(data => {
+          this.setState({
+            target: data
+          });
         });
+      // });
     });
-    return promise;
-  }
+  };
 
   render() {
     const props = this.props;

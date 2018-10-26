@@ -3,42 +3,26 @@ import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
 
 import {
-  Paper,
-  IconButton,
 } from '@material-ui/core';
 import {
-  CheckCircle,
 } from '@material-ui/icons';
 import ReactMarkdown from 'react-markdown';
 
 export const Block = ({classes, markdown, editable, reverse}) =>
-  <Paper
+  <div
     className={classes.root}
-    style={{
-      background: !editable ? '#eee' : 'transparent',
-    }}
   >
     <div
       contentEditable={editable}
-      style={{
-        height: '100%',
-        padding: '0 1em',
-        transform: reverse ? 'rotateY(180deg)' : '',
-      }}
+      className={classes.markdownWrapper}
     >
-      <ReactMarkdown className='markdown' source={markdown} />
+      <ReactMarkdown
+        className={classes.markdown}
+        source={markdown}
+        escapeHtml={false}
+      />
     </div>
-
-    { editable ?
-      (<div className={classes.buttons}>
-        <IconButton aria-label="Complete">
-          <CheckCircle fontSize="small" />
-        </IconButton>
-      </div>)
-    :
-      (<div />)
-    }
-  </Paper>
+  </div>
 
 Block.propTypes = {
   markdown: PropTypes.string.isRequired,
@@ -48,14 +32,16 @@ Block.propTypes = {
 
 const styles = theme => ({
   root: {
-    border: '1px solid #ccc',
+    // borderWidth: '0.5px',
+    // border: 'dashed #ccc',
+    height: '100%',
+    width: '100%',
+  },
+  markdownWrapper: {
     height: '100%',
   },
-  buttons: {
-    height: 0,
-    width: 'auto',
-    marginTop: '-4em',
-    textAlign: 'right',
+  markdown: {
+    padding: '0 1em',
   },
 })
 
