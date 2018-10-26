@@ -8,7 +8,6 @@ import {
   ExpansionPanelSummary,
   ExpansionPanelDetails,
   ExpansionPanelActions,
-  Typography,
   Button,
 } from '@material-ui/core';
 import {
@@ -32,7 +31,9 @@ export const Section = ({classes, sources, target, xsWidth}) =>
         escapeHtml={false}
       />
     </ExpansionPanelSummary>
-    <ExpansionPanelDetails className={classes.details}>
+    <ExpansionPanelDetails
+      className={classes.details}
+    >
       {
         sources[0].map((block,index) =>
           <Grid
@@ -83,6 +84,8 @@ const styles = theme => ({
   details: {
     display: 'block',
     padding: 0,
+    borderTop: '1px solid #ccc',
+    borderBottom: '1px solid #ccc',
   },
   source: {
     background: '#eee4',
