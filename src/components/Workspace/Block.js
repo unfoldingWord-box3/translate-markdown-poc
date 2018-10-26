@@ -8,7 +8,7 @@ import {
 } from '@material-ui/icons';
 import ReactMarkdown from 'react-markdown';
 
-export const Block = ({classes, markdown, editable, reverse}) =>
+export const Block = ({classes, markdown, editable, raw}) =>
   <div
     className={classes.root}
   >
@@ -16,18 +16,26 @@ export const Block = ({classes, markdown, editable, reverse}) =>
       contentEditable={editable}
       className={classes.markdownWrapper}
     >
-      <ReactMarkdown
-        className={classes.markdown}
-        source={markdown}
-        escapeHtml={false}
-      />
+      {
+        raw ? (
+          <pre className={classes.raw}>
+            {markdown}
+          </pre>
+        ) : (
+          <ReactMarkdown
+            className={classes.markdown}
+            source={markdown}
+            escapeHtml={false}
+          />
+        )
+      }
     </div>
   </div>
 
 Block.propTypes = {
   markdown: PropTypes.string.isRequired,
   editable: PropTypes.bool,
-  reverse: PropTypes.bool,
+  raw: PropTypes.bool,
 }
 
 const styles = theme => ({
@@ -43,6 +51,12 @@ const styles = theme => ({
   markdown: {
     padding: '0 1em',
   },
+  raw: {
+    margin: 0,
+    padding: '0 1em',
+    whiteSpace: 'pre-wrap',
+    fontSize: '1.2em',
+  }
 })
 
 export default withStyles(styles)(Block);
