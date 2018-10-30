@@ -8,8 +8,7 @@ export const htmlToMarkdown = (html) => {
 }
 
 export const markdownToHtml = (markdown) => {
-  marked.setOptions({ sanitize: true });
-  const html = marked(markdown);
+  const html = marked(markdown, {sanitize: true});
   return html;
 }
 
