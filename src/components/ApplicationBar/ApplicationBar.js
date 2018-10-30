@@ -76,7 +76,7 @@ class ApplicationBar extends React.Component {
             <Typography variant="title" color="inherit" noWrap>
               {projectName}
             </Typography>
-            <Typography variant="sub-title" color="inherit" className={classes.filepath} noWrap>
+            <Typography variant="subheading" color="inherit" className={classes.filepath} noWrap>
               /{filepath}
             </Typography>
           </Toolbar>
