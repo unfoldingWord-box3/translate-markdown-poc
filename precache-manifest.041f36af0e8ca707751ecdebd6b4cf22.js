@@ -24,7 +24,7 @@ self.__precacheManifest = [
     "url": "/translate-markdown/static/css/main.ee00b681.chunk.css"
   },
   {
-    "revision": "81126f2be7b4ac40daaf25048fb08139",
+    "revision": "4e9d9266247788bbf8ecf0f7578380fc",
     "url": "/translate-markdown/index.html"
   }
 ];
