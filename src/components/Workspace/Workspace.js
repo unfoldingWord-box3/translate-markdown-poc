@@ -12,19 +12,22 @@ import {
 
 import Section from './Section';
 
-export const Workspace = ({classes, sources, target}) => {
+export const Workspace = ({classes, sources, target, setTargetBlock}) => {
   let sections;
   let headers;
   let xsWidth = 12 / (sources.length + 1);
   if (sources[0] && target) {
     sections = sources[0].sections.map((section, index) =>
       <Section
+        key={index}
         sources={
           sources.map((e,_index) =>
             sources[_index].sections[index]
           )
         }
         target={target.sections[index]}
+        sectionIndex={index}
+        setTargetBlock={setTargetBlock}
         xsWidth={xsWidth}
       />
     );
@@ -32,8 +35,8 @@ export const Workspace = ({classes, sources, target}) => {
     headers = (
       <Grid className={classes.headers} container wrap="nowrap" spacing={16}>
         {
-          sources.map((e,_index) =>
-            <Grid item xs={xsWidth}>
+          sources.map((e, _index) =>
+            <Grid key={_index} item xs={xsWidth}>
               <Chip
                 icon={<Translate />}
                 label={'(' + sources[_index].languageId + ') ' + sources[_index].languageName + ' - ' + sources[_index].version}
@@ -72,6 +75,7 @@ Workspace.propTypes = {
   sources: PropTypes.array.isRequired,
   target: PropTypes.object.isRequired,
   classes: PropTypes.object.isRequired,
+  setTargetBlock: PropTypes.func.isRequired,
 };
 
 const styles = theme => ({

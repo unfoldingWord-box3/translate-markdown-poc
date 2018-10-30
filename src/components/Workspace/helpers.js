@@ -1,3 +1,18 @@
+import TurndownService from 'turndown';
+import marked from 'marked';
+
+const turndownService = new TurndownService();
+export const htmlToMarkdown = (html) => {
+  const markdown = turndownService.turndown(html);
+  debugger
+  return markdown;
+}
+
+export const markdownToHtml = (markdown) => {
+  marked.setOptions({ sanitize: true });
+  const html = marked(markdown);
+  return html;
+}
 
 export const sections = (blocks) => {
   let sections = [];

@@ -6,15 +6,30 @@ import {
 } from '@material-ui/core';
 import {
 } from '@material-ui/icons';
-import ReactMarkdown from 'react-markdown';
+import * as helpers from './helpers';
 
-export const Block = ({classes, markdown, editable, raw}) =>
-  <div
-    className={classes.root}
-  >
+export const Block = ({
+  classes,
+  markdown,
+  editable,
+  raw,
+  sectionIndex,
+  blockIndex,
+  setMarkdown,
+  setMarkdownFromHtml
+}) =>
+  <div className={classes.root}>
     <div
       contentEditable={editable}
       className={classes.markdownWrapper}
+      onBlur={(e)=>{
+        if (raw) {
+          setMarkdown(e.target.textContent);
+        } else {
+          const html = e.target.innerHTML;
+          setMarkdownFromHtml(html);
+        }
+      }}
     >
       {
         raw ? (
@@ -22,10 +37,11 @@ export const Block = ({classes, markdown, editable, raw}) =>
             {markdown}
           </pre>
         ) : (
-          <ReactMarkdown
+          <div
             className={classes.markdown}
-            source={markdown}
-            escapeHtml={false}
+            dangerouslySetInnerHTML={
+              { __html: helpers.markdownToHtml(markdown) }
+            }
           />
         )
       }
@@ -36,6 +52,10 @@ Block.propTypes = {
   markdown: PropTypes.string.isRequired,
   editable: PropTypes.bool,
   raw: PropTypes.bool,
+  sectionIndex: PropTypes.number.isRequired,
+  blockIndex: PropTypes.number.isRequired,
+  setMarkdown: PropTypes.func.isRequired,
+  setMarkdownFromHtml: PropTypes.func.isRequired,
 }
 
 const styles = theme => ({
@@ -47,13 +67,12 @@ const styles = theme => ({
   },
   markdownWrapper: {
     height: '100%',
+    margin: '0 0.5em',
+    padding: '0 0.5em',
   },
   markdown: {
-    padding: '0 1em',
   },
   raw: {
-    margin: 0,
-    padding: '0 1em',
     whiteSpace: 'pre-wrap',
     fontSize: '1.2em',
   }

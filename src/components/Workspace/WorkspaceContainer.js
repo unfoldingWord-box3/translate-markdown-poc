@@ -44,6 +44,12 @@ class WorkspaceContainer extends React.Component {
     }
   };
 
+  setTargetBlock(sectionIndex, blockIndex, markdown) {
+    let target = this.state.target;
+    target[sectionIndex][blockIndex] = markdown;
+    this.setState({target: target});
+  };
+
   componentDidMount() {
     helpers.fetchFile(files.sources[0])
     .then(data => {
@@ -85,6 +91,7 @@ class WorkspaceContainer extends React.Component {
         {...props}
         sources={sources}
         target={target}
+        setTargetBlock={this.setTargetBlock.bind(this)}
       />
     );
   };
