@@ -16,52 +16,51 @@ export const Workspace = ({classes, sources, target, setTargetBlock}) => {
   let sections;
   let headers;
   let xsWidth = 12 / (sources.length + 1);
-  if (sources[0] && target) {
-    sections = sources[0].sections.map((section, index) =>
-      <Section
-        key={index}
-        sources={
-          sources.map((e,_index) =>
-            sources[_index].sections[index]
-          )
-        }
-        target={target.sections[index]}
-        sectionIndex={index}
-        setTargetBlock={setTargetBlock}
-        xsWidth={xsWidth}
-      />
-    );
 
-    headers = (
-      <Grid className={classes.headers} container wrap="nowrap" spacing={16}>
-        {
-          sources.map((e, _index) =>
-            <Grid key={_index} item xs={xsWidth}>
-              <Chip
-                icon={<Translate />}
-                label={'(' + sources[_index].languageId + ') ' + sources[_index].languageName + ' - ' + sources[_index].version}
-                onDelete={()=>{}}
-                variant="outlined"
-                className={classes.header}
-                style={{background: '#fff9'}}
-              />
-            </Grid>
-          )
-        }
-        <Grid item xs={xsWidth}>
-          <Chip
-            icon={<Translate />}
-            label={'(' + target.languageId + ') ' + target.languageName + ' - ' + target.version}
-            onDelete={()=>{}}
-            deleteIcon={<Settings />}
-            variant="outlined"
-            className={classes.header}
-            style={{background: 'white'}}
-          />
-        </Grid>
+  sections = sources[0].sections.map((section, index) =>
+    <Section
+      key={index}
+      sources={
+        sources.map((e,_index) =>
+          sources[_index].sections[index]
+        )
+      }
+      target={target.sections[index]}
+      sectionIndex={index}
+      setTargetBlock={setTargetBlock}
+      xsWidth={xsWidth}
+    />
+  );
+
+  headers = (
+    <Grid className={classes.headers} container wrap="nowrap" spacing={16}>
+      {
+        sources.map((e, _index) =>
+          <Grid key={_index} item xs={xsWidth}>
+            <Chip
+              icon={<Translate />}
+              label={'(' + sources[_index].languageId + ') ' + sources[_index].languageName + ' - ' + sources[_index].version}
+              onDelete={()=>{}}
+              variant="outlined"
+              className={classes.header}
+              style={{background: '#fff9'}}
+            />
+          </Grid>
+        )
+      }
+      <Grid item xs={xsWidth}>
+        <Chip
+          icon={<Translate />}
+          label={'(' + target.languageId + ') ' + target.languageName + ' - ' + target.version}
+          onDelete={()=>{}}
+          deleteIcon={<Settings />}
+          variant="outlined"
+          className={classes.header}
+          style={{background: 'white'}}
+        />
       </Grid>
-    );
-  }
+    </Grid>
+  );
 
   return (
     <div className={classes.root}>

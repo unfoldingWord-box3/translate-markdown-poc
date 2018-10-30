@@ -86,14 +86,17 @@ class WorkspaceContainer extends React.Component {
       target,
     } = this.state;
 
-    return (
-      <Workspace
+    let workspace = <div />;
+    if (sources[0] && target) {
+      workspace = <Workspace
         {...props}
         sources={sources}
         target={target}
         setTargetBlock={this.setTargetBlock.bind(this)}
       />
-    );
+    }
+
+    return workspace;
   };
 };
 export default WorkspaceContainer;

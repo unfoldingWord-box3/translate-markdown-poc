@@ -13,35 +13,35 @@ export const Block = ({
   markdown,
   editable,
   raw,
-  sectionIndex,
-  blockIndex,
   setMarkdown,
   setMarkdownFromHtml
 }) =>
   <div className={classes.root}>
     <div
-      contentEditable={editable}
       className={classes.markdownWrapper}
-      onBlur={(e)=>{
-        if (raw) {
-          setMarkdown(e.target.textContent);
-        } else {
-          const html = e.target.innerHTML;
-          setMarkdownFromHtml(html);
-        }
-      }}
     >
       {
         raw ? (
-          <pre className={classes.raw}>
+          <pre
+            className={classes.raw}
+            contentEditable={editable}
+            onBlur={(e)=>{
+              setMarkdown(e.target.textContent);
+            }}
+          >
             {markdown}
           </pre>
         ) : (
           <div
             className={classes.markdown}
+            contentEditable={editable}
             dangerouslySetInnerHTML={
               { __html: helpers.markdownToHtml(markdown) }
             }
+            onBlur={(e)=>{
+              const html = e.target.innerHTML;
+              setMarkdownFromHtml(html);
+            }}
           />
         )
       }
@@ -52,10 +52,8 @@ Block.propTypes = {
   markdown: PropTypes.string.isRequired,
   editable: PropTypes.bool,
   raw: PropTypes.bool,
-  sectionIndex: PropTypes.number.isRequired,
-  blockIndex: PropTypes.number.isRequired,
-  setMarkdown: PropTypes.func.isRequired,
-  setMarkdownFromHtml: PropTypes.func.isRequired,
+  setMarkdown: PropTypes.func,
+  setMarkdownFromHtml: PropTypes.func,
 }
 
 const styles = theme => ({

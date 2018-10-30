@@ -4,7 +4,6 @@ import marked from 'marked';
 const turndownService = new TurndownService();
 export const htmlToMarkdown = (html) => {
   const markdown = turndownService.turndown(html);
-  debugger
   return markdown;
 }
 

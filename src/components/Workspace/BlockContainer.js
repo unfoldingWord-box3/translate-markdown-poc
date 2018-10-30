@@ -40,7 +40,7 @@ class BlockContainer extends React.Component {
   };
 };
 
-Block.propTypes = {
+BlockContainer.propTypes = {
   markdown: PropTypes.string.isRequired,
   editable: PropTypes.bool,
   raw: PropTypes.bool,
