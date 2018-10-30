@@ -23,17 +23,18 @@ export const Block = ({
       {
         raw ? (
           <pre
-            className={classes.raw}
+            className={classes.markdown}
             contentEditable={editable}
             onBlur={(e)=>{
               setMarkdown(e.target.textContent);
             }}
-          >
-            {markdown}
-          </pre>
+            dangerouslySetInnerHTML={
+              { __html: markdown }
+            }
+          />
         ) : (
           <div
-            className={classes.markdown}
+            className={classes.html}
             contentEditable={editable}
             dangerouslySetInnerHTML={
               { __html: helpers.markdownToHtml(markdown) }
@@ -68,9 +69,9 @@ const styles = theme => ({
     margin: '0 0.5em',
     padding: '0 0.5em',
   },
-  markdown: {
+  html: {
   },
-  raw: {
+  markdown: {
     whiteSpace: 'pre-wrap',
     fontSize: '1.2em',
   }
