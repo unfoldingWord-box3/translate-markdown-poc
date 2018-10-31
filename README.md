@@ -11,19 +11,20 @@ Our organization has many content projects comprised of up to hundreds of markdo
 Most content creators and translators of Markdown content are not typically familiar with translation workflows. Creating a clean and simple user experience to aid in an intuitive workflow was needed. Our goal was to maximize the amount of work not done and attempt to create a single web app that was easy to use with minimal training.
 
 ## Goals
-- Handle end to end translation of a single Markdown file.
-- Intuitive interface and workflow for non professional translators.
-- Guide parity between original and translated markdown of text blocks.
-  - Text alignment to avoid scrolling to find matching content.
-  - Block level formatting such as headings.
-  - Inline formatting.
-  - Links and images.
-- File Management to easily switch between Markdown files.
-- Git integration:
-  - Data persistence
-  - Change tracking
-  - Synchronize progress
-  - Manage revisions
+- [ ] Handle end to end translation of a single Markdown file.
+- [x] Intuitive interface and workflow for non professional translators.
+- [ ] Guide parity between original and translated markdown of text blocks.
+  - [x] Text alignment to avoid scrolling to find matching content.
+  - [x] Block level formatting such as headings.
+  - [ ] Inline formatting.
+  - [x] Links and images.
+  - [ ] Move translation text blocks to align to original.
+- [ ] File Management to easily switch between Markdown files.
+- [ ] Git integration:
+  - [ ] Data persistence
+  - [ ] Change tracking
+  - [ ] Synchronize progress
+  - [ ] Manage revisions
 
 ## Technical Overview
 - Load original and translated file.
