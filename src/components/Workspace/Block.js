@@ -26,7 +26,7 @@ export const Block = ({
             className={classes.markdown}
             contentEditable={editable}
             onBlur={(e)=>{
-              setMarkdown(e.target.textContent);
+              setMarkdown(e.target.innerHTML);
             }}
             dangerouslySetInnerHTML={
               { __html: markdown }
@@ -70,8 +70,10 @@ const styles = theme => ({
     padding: '0 0.5em',
   },
   html: {
+    height: '100%',
   },
   markdown: {
+    height: '100%',
     whiteSpace: 'pre-wrap',
     fontSize: '1.2em',
   }
