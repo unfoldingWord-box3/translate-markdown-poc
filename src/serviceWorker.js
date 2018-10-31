@@ -65,7 +65,7 @@ function registerValidSW(swUrl, config) {
               // the fresh content will have been added to the cache.
               // It's the perfect time to display a "New content is
               // available; please refresh." message in your web app.
-              alert('New content is available; please refresh.');
+              if (window) window.alert('New content is available; please refresh.');
 
               // Execute callback
               if (config.onUpdate) {
@@ -75,7 +75,7 @@ function registerValidSW(swUrl, config) {
               // At this point, everything has been precached.
               // It's the perfect time to display a
               // "Content is cached for offline use." message.
-              alert('This is available for offline use.');
+              if (window) window.alert('This is available for offline use.');
 
               // Execute callback
               if (config.onSuccess) {
