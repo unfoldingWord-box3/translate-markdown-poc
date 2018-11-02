@@ -37,6 +37,7 @@ const styles = theme => ({
     minWidth: '20em',
     fontSize: '0.9em',
     lineHeight: '1.75em',
+    width: '100%',
   }
 });
 
