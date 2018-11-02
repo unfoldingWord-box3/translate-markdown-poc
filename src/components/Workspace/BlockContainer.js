@@ -16,6 +16,11 @@ class BlockContainer extends React.Component {
     this.setState({
       markdown: markdown
     });
+    this.props.setTargetBlock(
+      this.props.sectionIndex,
+      this.props.blockIndex,
+      markdown,
+    )
   };
 
   setMarkdownFromHtml(html) {
@@ -46,6 +51,7 @@ BlockContainer.propTypes = {
   raw: PropTypes.bool,
   sectionIndex: PropTypes.number.isRequired,
   blockIndex: PropTypes.number.isRequired,
+  setTargetBlock: PropTypes.func.isRequired,
 }
 
 export default BlockContainer;

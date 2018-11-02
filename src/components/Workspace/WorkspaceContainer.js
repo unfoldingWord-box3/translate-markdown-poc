@@ -44,10 +44,13 @@ class WorkspaceContainer extends React.Component {
     }
   };
 
-  setTargetBlock(sectionIndex, blockIndex, markdown) {
-    let target = this.state.target;
-    target[sectionIndex][blockIndex] = markdown;
-    this.setState({target: target});
+  setTargetBlock(sectionIndex, blockIndex, markdownBlock) {
+    const target = JSON.parse(JSON.stringify(this.state.target));
+    const _sections = helpers.setBlockInSections(target.sections, markdownBlock, sectionIndex, blockIndex);
+    target.sections = _sections;
+    this.setState({
+      target: target
+    });
   };
 
   componentDidMount() {

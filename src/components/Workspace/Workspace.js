@@ -11,21 +11,19 @@ import {
 } from '@material-ui/icons';
 
 import Section from './Section';
+import * as helpers from './helpers';
 
 export const Workspace = ({classes, sources, target, setTargetBlock}) => {
   let sections;
   let headers;
   let xsWidth = 12 / (sources.length + 1);
 
-  sections = sources[0].sections.map((section, index) =>
+  let pivotedSections = helpers.pivotSections(sources[0].sections, target.sections);
+
+  sections = pivotedSections.map((section, index) =>
     <Section
       key={index}
-      sources={
-        sources.map((e,_index) =>
-          sources[_index].sections[index]
-        )
-      }
-      target={target.sections[index]}
+      section={section}
       sectionIndex={index}
       setTargetBlock={setTargetBlock}
       xsWidth={xsWidth}

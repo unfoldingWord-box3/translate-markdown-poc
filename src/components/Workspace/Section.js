@@ -3,7 +3,6 @@ import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
 import ReactMarkdown from 'react-markdown';
 import {
-  Grid,
   ExpansionPanel,
   ExpansionPanelSummary,
   ExpansionPanelDetails,
@@ -14,8 +13,7 @@ import {
   ExpandMore,
 } from '@material-ui/icons';
 
-import BlockContainer from './BlockContainer';
-import Block from './Block';
+import BlockRow from './BlockRow';
 
 class Section extends React.Component {
   constructor(props) {
@@ -27,14 +25,31 @@ class Section extends React.Component {
 
   setRaw(value) {
     this.setState({
-      raw: value,
+      raw: value
     });
-  }
+  };
+
+  blockRows() {
+    const {section, xsWidth, setTargetBlock, sectionIndex} = this.props;
+    const {raw} = this.state;
+    const blockRows = section.map((blockRow, index) =>
+      <BlockRow
+        key={index}
+        xsWidth={xsWidth}
+        sourceBlock={blockRow.sourceBlock || ''}
+        targetBlock={blockRow.targetBlock || ''}
+        setTargetBlock={setTargetBlock}
+        sectionIndex={sectionIndex}
+        blockIndex={index}
+        raw={raw}
+      />
+    );
+    return blockRows;
+  };
 
   render() {
-    const {classes, sources, target, xsWidth, setTargetBlock, sectionIndex} = this.props;
+    const {classes, section} = this.props;
     const {raw} = this.state;
-
     return (
       <ExpansionPanel className={classes.root}>
         <ExpansionPanelSummary
@@ -44,46 +59,14 @@ class Section extends React.Component {
         >
           <ReactMarkdown
             className={classes.summaryContent}
-            source={sources[0][0]}
+            source={section[0].sourceBlock}
             escapeHtml={false}
           />
         </ExpansionPanelSummary>
         <ExpansionPanelDetails
           className={classes.details}
         >
-          {
-            sources[0].map((block,index) =>
-              <Grid
-                container
-                key={index}
-                wrap="nowrap"
-                spacing={0}
-                className={classes.blockRow}
-              >
-                {
-                  sources.map((e,_index) =>
-                    <Grid
-                      key={_index}
-                      item xs={xsWidth}
-                      className={classes.source}
-                    >
-                      <Block raw={raw} markdown={sources[_index][index] + '\n\n'} />
-                    </Grid>
-                  )
-                }
-                <Grid item xs={xsWidth}>
-                  <BlockContainer
-                    editable
-                    raw={raw}
-                    markdown={target[index] + '\n\n'}
-                    sectionIndex={sectionIndex}
-                    blockIndex={index}
-                    setTargetBlock={setTargetBlock}
-                  />
-                </Grid>
-              </Grid>
-            )
-          }
+          {this.blockRows()}
         </ExpansionPanelDetails>
         <ExpansionPanelActions>
           <Button
@@ -98,12 +81,11 @@ class Section extends React.Component {
         </ExpansionPanelActions>
       </ExpansionPanel>
     );
-  }
+  };
 };
 
 Section.propTypes = {
-  sources: PropTypes.array.isRequired,
-  target: PropTypes.array.isRequired,
+  section: PropTypes.array.isRequired,
   xsWidth: PropTypes.number.isRequired,
   sectionIndex: PropTypes.number.isRequired,
   setTargetBlock: PropTypes.func.isRequired,
@@ -112,17 +94,12 @@ Section.propTypes = {
 const styles = theme => ({
   root: {
   },
-  blockRow: {
-  },
   details: {
     display: 'block',
     padding: 0,
     borderTop: '1px solid #ccc',
     borderBottom: '1px solid #ccc',
   },
-  source: {
-    background: '#eee4',
-  }
 });
 
 export default withStyles(styles)(Section);

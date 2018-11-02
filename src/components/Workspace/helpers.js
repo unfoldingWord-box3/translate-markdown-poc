@@ -12,7 +12,12 @@ export const markdownToHtml = (markdown) => {
   return html;
 }
 
-export const sections = (blocks) => {
+export const blocksFromMarkdown = (markdown) => {
+  return markdown
+    .split(/\n\s?\n/);
+};
+
+export const sectionsFromBlocks = (blocks) => {
   let sections = [];
   let section = [];
   blocks.forEach(block => {
@@ -32,18 +37,58 @@ export const sections = (blocks) => {
   return sections;
 };
 
-export const blocks = (markdown) => {
-  return markdown
-    .split(/\n\n/);
+export const pivotSections = (sourceSections, targetSections) => {
+  let pivotedSections = [];
+  const longest = (sourceSections.length > targetSections.length) ?
+    sourceSections : targetSections;
+  longest.forEach((blocks, sectionIndex) => {
+    let pivotedBlocks = [];
+    blocks.forEach((block, blockIndex) => {
+      const blockRow = {
+        sourceBlock: sourceSections[sectionIndex][blockIndex],
+        targetBlock: targetSections[sectionIndex][blockIndex],
+      };
+      pivotedBlocks.push(blockRow);
+    });
+    pivotedSections.push(pivotedBlocks);
+  });
+  return pivotedSections;
 };
+
+export const setBlockInSections = (sections, blockMarkdown, sectionIndex, blockIndex) => {
+  let _sections = JSON.parse(JSON.stringify(sections));
+  // overwrite the edited block
+  _sections[sectionIndex][blockIndex] = blockMarkdown;
+  const __sections = reparseSections(_sections);
+  return __sections
+};
+
+export const blocksFromSections = (_sections) => {
+  let allBlocks = [];
+  _sections.forEach(_blocks => {
+    _blocks.forEach(_block => {
+      allBlocks.push(_block);
+    });
+  });
+  return allBlocks;
+};
+
+export const reparseSections = (sections) => {
+  let _sections = JSON.parse(JSON.stringify(sections));
+  const blocks = blocksFromSections(_sections);
+  const markdownFile = blocks.join('\n\n');
+  const _blocks = blocksFromMarkdown(markdownFile);
+  const __sections = sectionsFromBlocks(_blocks);
+  return __sections;
+}
 
 export const fetchFile = (config) => {
   const promise = new Promise((resolve) => {
     fetch(config.path)
       .then((res) => res.text())
       .then((text) => {
-        const _blocks = blocks(text);
-        const _sections = sections(_blocks);
+        const _blocks = blocksFromMarkdown(text);
+        const _sections = sectionsFromBlocks(_blocks);
         const data = config;
         data.sections = _sections;
         resolve(data);
