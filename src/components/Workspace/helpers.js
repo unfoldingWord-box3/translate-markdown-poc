@@ -13,8 +13,7 @@ export const markdownToHtml = (markdown) => {
 }
 
 export const blocksFromMarkdown = (markdown) => {
-  return markdown
-    .split(/\n\s?\n/);
+  return markdown.split(/\n\s?\n/);
 };
 
 export const sectionsFromBlocks = (blocks) => {
@@ -44,9 +43,13 @@ export const pivotSections = (sourceSections, targetSections) => {
   longest.forEach((blocks, sectionIndex) => {
     let pivotedBlocks = [];
     blocks.forEach((block, blockIndex) => {
+      const sourceSection = sourceSections[sectionIndex];
+      const targetSection = targetSections[sectionIndex];
+      const sourceBlock = sourceSection[blockIndex];
+      const targetBlock = targetSection[blockIndex];
       const blockRow = {
-        sourceBlock: sourceSections[sectionIndex][blockIndex],
-        targetBlock: targetSections[sectionIndex][blockIndex],
+        sourceBlock: sourceBlock,
+        targetBlock: targetBlock,
       };
       pivotedBlocks.push(blockRow);
     });
