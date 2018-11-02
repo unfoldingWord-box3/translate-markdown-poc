@@ -13,8 +13,9 @@ export const Block = ({
   markdown,
   editable,
   raw,
-  setMarkdown,
-  setMarkdownFromHtml
+  setTargetBlock,
+  sectionIndex,
+  blockIndex,
 }) =>
   <div className={classes.root}>
     <div
@@ -26,7 +27,12 @@ export const Block = ({
             className={classes.markdown}
             contentEditable={editable}
             onBlur={(e)=>{
-              setMarkdown(e.target.innerText);
+              const markdown = e.target.innerText;
+              setTargetBlock(
+                sectionIndex,
+                blockIndex,
+                markdown,
+              );
             }}
             dangerouslySetInnerHTML={
               { __html: markdown }
@@ -41,7 +47,12 @@ export const Block = ({
             }
             onBlur={(e)=>{
               const html = e.target.innerHTML;
-              setMarkdownFromHtml(html);
+              const markdown = helpers.htmlToMarkdown(html);
+              setTargetBlock(
+                sectionIndex,
+                blockIndex,
+                markdown,
+              );
             }}
           />
         )
@@ -53,14 +64,13 @@ Block.propTypes = {
   markdown: PropTypes.string.isRequired,
   editable: PropTypes.bool,
   raw: PropTypes.bool,
-  setMarkdown: PropTypes.func,
-  setMarkdownFromHtml: PropTypes.func,
+  sectionIndex: PropTypes.number,
+  blockIndex: PropTypes.number,
+  setTargetBlock: PropTypes.func,
 }
 
 const styles = theme => ({
   root: {
-    // borderWidth: '0.5px',
-    // border: 'dashed #ccc',
     height: '100%',
     width: '100%',
   },

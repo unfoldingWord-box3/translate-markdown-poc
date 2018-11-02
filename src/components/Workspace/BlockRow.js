@@ -7,7 +7,6 @@ import {
 import {
 } from '@material-ui/icons';
 
-import BlockContainer from './BlockContainer';
 import Block from './Block';
 
 export const BlockRow = ({
@@ -33,7 +32,7 @@ export const BlockRow = ({
       <Block raw={raw} markdown={sourceBlock} />
     </Grid>
     <Grid item xs={xsWidth}>
-      <BlockContainer
+      <Block
         editable
         raw={raw}
         markdown={targetBlock}
@@ -48,9 +47,9 @@ BlockRow.propTypes = {
   sourceBlock: PropTypes.string.isRequired,
   targetBlock: PropTypes.string.isRequired,
   xsWidth: PropTypes.number.isRequired,
+  setTargetBlock: PropTypes.func.isRequired,
   sectionIndex: PropTypes.number.isRequired,
   blockIndex: PropTypes.number.isRequired,
-  setTargetBlock: PropTypes.func.isRequired,
 };
 
 const styles = theme => ({
