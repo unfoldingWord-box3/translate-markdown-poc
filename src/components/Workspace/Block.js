@@ -26,7 +26,7 @@ export const Block = ({
             className={classes.markdown}
             contentEditable={editable}
             onBlur={(e)=>{
-              setMarkdown(e.target.innerHTML);
+              setMarkdown(e.target.innerText);
             }}
             dangerouslySetInnerHTML={
               { __html: markdown }
