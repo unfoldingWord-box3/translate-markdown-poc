@@ -34,7 +34,7 @@ class Section extends React.Component {
     const {raw} = this.state;
     const blockRows = section.map((blockRow, index) =>
       <BlockRow
-        key={index}
+        key={Math.random()}
         xsWidth={xsWidth}
         sourceBlock={blockRow.sourceBlock || ''}
         targetBlock={blockRow.targetBlock || ''}

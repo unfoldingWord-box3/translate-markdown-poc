@@ -35,7 +35,7 @@ export const Block = ({
               );
             }}
             dangerouslySetInnerHTML={
-              { __html: markdown }
+              { __html: helpers.blocksFromMarkdown(markdown)[0] }
             }
           />
         ) : (
@@ -43,7 +43,9 @@ export const Block = ({
             className={classes.html}
             contentEditable={editable}
             dangerouslySetInnerHTML={
-              { __html: helpers.markdownToHtml(markdown) }
+              { __html: helpers.markdownToHtml(
+                helpers.blocksFromMarkdown(markdown)[0]
+              ) }
             }
             onBlur={(e)=>{
               const html = e.target.innerHTML;
