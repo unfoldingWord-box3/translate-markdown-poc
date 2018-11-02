@@ -2,6 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
 import ReactMarkdown from 'react-markdown';
+import md5 from 'md5';
 import {
   ExpansionPanel,
   ExpansionPanelSummary,
@@ -34,7 +35,7 @@ class Section extends React.Component {
     const {raw} = this.state;
     const blockRows = section.map((blockRow, index) =>
       <BlockRow
-        key={Math.random()}
+        key={index + md5(JSON.stringify(blockRow))}
         xsWidth={xsWidth}
         sourceBlock={blockRow.sourceBlock || ''}
         targetBlock={blockRow.targetBlock || ''}
