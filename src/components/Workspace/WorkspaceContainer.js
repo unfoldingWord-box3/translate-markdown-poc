@@ -1,99 +1,63 @@
 import React from 'react';
 import Workspace from './Workspace';
 
-// import source0Path from '../../data/ta/en/v10/translate/figs-metaphor/01.md';
-import source1Path from '../../data/ta/en/v9/translate/figs-metaphor/01.md';
-import targetPath from '../../data/ta/mr/v9/translate/figs-metaphor/01.md';
-
-import * as helpers from './helpers';
+import * as WorkspaceHelpers from './WorkspaceHelpers';
 import './workspace.css';
 
-const files = {
-  sources: [
-    // {
-    //   type: 'source',
-    //   languageName: 'English',
-    //   languageId: 'EN',
-    //   version: 'v10',
-    //   path: source0Path,
-    // },
-    {
-      type: 'source',
-      languageName: 'English',
-      languageId: 'EN',
-      version: 'v9',
-      path: source1Path,
-    },
-  ],
-  target:
-    {
-      type: 'target',
-      languageName: 'Marathi',
-      languageId: 'MR',
-      version: 'v9',
-      path: targetPath,
-    },
-}
+const fileManifests = {
+  source: {
+    type: 'source',
+    languageName: 'English',
+    languageId: 'EN',
+    version: 'v9',
+    uri: 'data/ta/en/v9/translate/figs-metaphor/01.md',
+  },
+  target: {
+    type: 'target',
+    languageName: 'Marathi',
+    languageId: 'MR',
+    version: 'v9',
+    uri: 'data/ta/mr/v9/translate/figs-metaphor/01.md',
+  },
+};
 
 class WorkspaceContainer extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      sources: [],
-      target: null,
-    }
+  state = {
+    source: null,
+    target: null,
   };
 
   setTargetBlock(sectionIndex, blockIndex, markdownBlock) {
     const target = JSON.parse(JSON.stringify(this.state.target));
-    const _sections = helpers.setBlockInSections(target.sections, markdownBlock, sectionIndex, blockIndex);
-    target.sections = _sections;
+    const sections = WorkspaceHelpers.setBlockInSections(target.sections, markdownBlock, sectionIndex, blockIndex);
+    target.sections = sections;
     this.setState({
       target: target
     });
   };
 
   componentDidMount() {
-    helpers.fetchFile(files.sources[0])
-    .then(data => {
-      let sources = this.state.sources;
-      sources.push(data);
+    WorkspaceHelpers.fetchFiles(fileManifests.source, fileManifests.target)
+    .then(({source, target}) => {
       this.setState({
-        sources: sources
+        source: source,
+        target: target
       });
     })
-    .then(()=>{
-      // helpers.fetchFile(files.sources[1])
-      // .then(data => {
-      //   let sources = this.state.sources;
-      //   sources.push(data);
-      //   this.setState({
-      //     sources: sources
-      //   });
-      // })
-      // .then(()=>{
-        helpers.fetchFile(files.target)
-        .then(data => {
-          this.setState({
-            target: data
-          });
-        });
-      // });
-    });
   };
 
   render() {
     const props = this.props;
     let {
-      sources,
+      source,
       target,
     } = this.state;
 
     let workspace = <div />;
-    if (sources[0] && target) {
+    if (source && target) {
       workspace = <Workspace
         {...props}
-        sources={sources}
+        source={source}
         target={target}
         setTargetBlock={this.setTargetBlock.bind(this)}
       />

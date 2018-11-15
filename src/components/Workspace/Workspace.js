@@ -11,14 +11,14 @@ import {
 } from '@material-ui/icons';
 
 import Section from './Section';
-import * as helpers from './helpers';
+import * as WorkspaceHelpers from './WorkspaceHelpers';
 
-export const Workspace = ({classes, sources, target, setTargetBlock}) => {
+export const Workspace = ({classes, source, target, setTargetBlock}) => {
   let sections;
   let headers;
-  let xsWidth = 12 / (sources.length + 1);
+  let xsWidth = 12;
 
-  let pivotedSections = helpers.pivotSections(sources[0].sections, target.sections);
+  let pivotedSections = WorkspaceHelpers.pivotSections(source.sections, target.sections);
 
   sections = pivotedSections.map((section, index) =>
     <Section
@@ -32,20 +32,16 @@ export const Workspace = ({classes, sources, target, setTargetBlock}) => {
 
   headers = (
     <Grid className={classes.headers} container wrap="nowrap" spacing={16}>
-      {
-        sources.map((e, _index) =>
-          <Grid key={_index} item xs={xsWidth}>
-            <Chip
-              icon={<Translate />}
-              label={'(' + sources[_index].languageId + ') ' + sources[_index].languageName + ' - ' + sources[_index].version}
-              onDelete={()=>{}}
-              variant="outlined"
-              className={classes.header}
-              style={{background: '#fff9'}}
-            />
-          </Grid>
-        )
-      }
+      <Grid item xs={xsWidth}>
+        <Chip
+          icon={<Translate />}
+          label={'(' + source.languageId + ') ' + source.languageName + ' - ' + source.version}
+          onDelete={()=>{}}
+          variant="outlined"
+          className={classes.header}
+          style={{background: '#fff9'}}
+        />
+      </Grid>
       <Grid item xs={xsWidth}>
         <Chip
           icon={<Translate />}
@@ -69,7 +65,7 @@ export const Workspace = ({classes, sources, target, setTargetBlock}) => {
 }
 
 Workspace.propTypes = {
-  sources: PropTypes.array.isRequired,
+  source: PropTypes.object.isRequired,
   target: PropTypes.object.isRequired,
   classes: PropTypes.object.isRequired,
   setTargetBlock: PropTypes.func.isRequired,

@@ -6,7 +6,7 @@ import {
 } from '@material-ui/core';
 import {
 } from '@material-ui/icons';
-import * as helpers from './helpers';
+import * as WorkspaceHelpers from '../WorkspaceHelpers';
 
 export const Block = ({
   classes,
@@ -35,7 +35,7 @@ export const Block = ({
               );
             }}
             dangerouslySetInnerHTML={
-              { __html: helpers.blocksFromMarkdown(markdown)[0] }
+              { __html: WorkspaceHelpers.prepareMarkdownForDisplay(markdown) }
             }
           />
         ) : (
@@ -43,13 +43,13 @@ export const Block = ({
             className={classes.html}
             contentEditable={editable}
             dangerouslySetInnerHTML={
-              { __html: helpers.markdownToHtml(
-                helpers.blocksFromMarkdown(markdown)[0]
+              { __html: WorkspaceHelpers.markdownToHtml(
+                markdown
               ) }
             }
             onBlur={(e)=>{
               const html = e.target.innerHTML;
-              const markdown = helpers.htmlToMarkdown(html);
+              const markdown = WorkspaceHelpers.htmlToMarkdown(html);
               setTargetBlock(
                 sectionIndex,
                 blockIndex,

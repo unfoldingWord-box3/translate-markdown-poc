@@ -20,7 +20,7 @@ class Section extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      raw: false,
+      raw: true,
     }
   };
 
@@ -35,7 +35,7 @@ class Section extends React.Component {
     const {raw} = this.state;
     const blockRows = section.map((blockRow, index) =>
       <BlockRow
-        key={index + md5(JSON.stringify(blockRow))}
+        key={index + md5(JSON.stringify(blockRow)) + Math.random()}
         xsWidth={xsWidth}
         sourceBlock={blockRow.sourceBlock || ''}
         targetBlock={blockRow.targetBlock || ''}
