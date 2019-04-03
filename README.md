@@ -1,8 +1,6 @@
 # Translate Markdown
 A Proof of Concept React App to facilitate translation of Markdown files.
 
-Demo: [https://klappy.github.io/translate-markdown/]
-
 ## Purpose
 Markdown is growing in popularity and becoming a common file format for text content. The current workflows around translating Markdown files is quite tedious and cumbersome at best.
 
